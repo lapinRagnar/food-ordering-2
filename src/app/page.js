@@ -47,10 +47,6 @@ export default function Home() {
 
       </section>
 
-      <footer className="border-t p-8 text-center text-gray-500 ">
-        &Copy; 2023@tous les droits réservés
-      </footer>
-
     </>
   )
 }

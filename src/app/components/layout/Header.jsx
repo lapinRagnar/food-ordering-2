@@ -13,7 +13,7 @@ const Header = () => {
 
       <header className=" mt-5 flex flex-col justify-center gap-5 items-center  md:justify-center md:flex-row md:items-center ">
 
-        <Link href="" className="text-primary font-bold md:text-2xl text-3xl">Pizza lapinRagnar</Link>
+        <Link href="/" className="text-primary font-bold md:text-2xl text-3xl">Pizza lapinRagnar</Link>
 
         <div className="flex items-center justify-between md:w-[800px] w-[400px] h-full ">
           
@@ -21,7 +21,7 @@ const Header = () => {
 
             <div className="flex items-center gap-2 cursor-pointer  hover:text-green-500 ">
               <SiHomeassistantcommunitystore size={25} />
-              <Link href={''} className="hidden sm:block">Accueil</Link>
+              <Link href={'/'} className="hidden sm:block">Accueil</Link>
             </div>
 
             <div className="flex items-center gap-1 cursor-pointer hover:text-green-500 ">
