@@ -29,7 +29,7 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="sm:col-span-2 w-full bg-red-800 mt-5 ">
+      <div className="sm:col-span-2 w-full  mt-5 ">
         <Image 
           className="rounded-lg w-full"
           objectFit="contain"
