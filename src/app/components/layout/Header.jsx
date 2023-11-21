@@ -1,4 +1,5 @@
 import Link from "next/link"
+import {  MdContactPhone, MdMenuBook  } from "react-icons/md"
 import { FiInfo } from "react-icons/fi"
 import { SiHomeassistantcommunitystore } from "react-icons/si"
 import { TiUserAddOutline } from "react-icons/ti";
@@ -40,13 +41,13 @@ const Header = () => {
 
           </nav>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <div className="flex items-center gap-1 cursor-pointer hover:text-green-500 text-red-400">
-              <IoMdLogIn size={30} />
+              <IoMdLogIn size={25} />
               <Link href={'/login'} className="hidden sm:block">Login</Link>
             </div>
             <div className="flex items-center gap-1 cursor-pointer hover:text-green-500 text-red-400">
-              <TiUserAddOutline size={30} />
+              <TiUserAddOutline size={25} />
               <Link href={'/register'} className="hidden sm:block">Register</Link>
             </div>
           </div>
