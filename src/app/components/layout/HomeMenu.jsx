@@ -1,5 +1,6 @@
 import Image from "next/image"
 import MenuItem from "../menu/MenuItem"
+import SectionHeaders from "./SectionHeaders"
 
 const HomeMenu = () => {
   return (
@@ -26,12 +27,10 @@ const HomeMenu = () => {
       
       <div className="text-center pt-[90px] mt-[20px] ">
 
-        <h3 className="uppercase text-gray-500 font-semibold ">
-          Passer au paiement
-        </h3>
-        <h2 className="text-primary font-bold text-4xl">
-          Menu
-        </h2>
+        <SectionHeaders 
+          subHeader="Passer au paiement"
+          mainHeader="Menu"
+        />
 
         <div 
           className="
