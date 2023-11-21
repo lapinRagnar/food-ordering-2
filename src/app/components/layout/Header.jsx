@@ -1,7 +1,8 @@
 import Link from "next/link"
-import { MdOutlineManageAccounts, MdContactPhone, MdMenuBook  } from "react-icons/md"
 import { FiInfo } from "react-icons/fi"
 import { SiHomeassistantcommunitystore } from "react-icons/si"
+import { TiUserAddOutline } from "react-icons/ti";
+import { IoMdLogIn } from "react-icons/io";
 
 
 
@@ -13,7 +14,7 @@ const Header = () => {
 
         <Link href="" className="text-primary font-bold md:text-2xl text-3xl">Pizza lapinRagnar</Link>
 
-        <div className="flex items-center justify-between md:w-[800px] w-[300px] h-full ">
+        <div className="flex items-center justify-between md:w-[800px] w-[400px] h-full ">
           
           <nav className="flex items-center justify-center space-x-10 text-gray-600 font-semibold w-[200px] sm:w-[600px] ">
 
@@ -39,9 +40,15 @@ const Header = () => {
 
           </nav>
 
-          <div className="flex items-center gap-1 cursor-pointer hover:text-green-500 text-red-400">
-            <MdOutlineManageAccounts size={30} />
-            <Link href={''} className="hidden sm:block">Login</Link>
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1 cursor-pointer hover:text-green-500 text-red-400">
+              <IoMdLogIn size={30} />
+              <Link href={'/login'} className="hidden sm:block">Login</Link>
+            </div>
+            <div className="flex items-center gap-1 cursor-pointer hover:text-green-500 text-red-400">
+              <TiUserAddOutline size={30} />
+              <Link href={'/register'} className="hidden sm:block">Register</Link>
+            </div>
           </div>
 
         </div>
