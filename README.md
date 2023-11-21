@@ -34,3 +34,16 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+# le tuto
+https://www.youtube.com/watch?v=nGoSP3MBV2E&list=PLfe-EbMNSdYrtApoOiy0TkNPOLV-xyF97&index=23&t=284s
+https://github.com/dejwid/food-ordering
+
+# ressources :
+## react-icons
+https://blog.logrocket.com/react-icons-comprehensive-tutorial-examples/
+
+## tailwind en francais
+https://pixenjoy.com/fr/notes/le-framework-tailwindcss#:~:text=Tailwind%20g%C3%A8re%20la%20gestion%20du,on%20applique%20aux%20classes%20utilitaires.&text=Par%20d%C3%A9faut%2C%20Tailwind%20utilise%20des,de%20ruptures%20%22mobile%20first%22.
+
