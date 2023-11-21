@@ -1,5 +1,6 @@
 import Header from "./components/layout/Header.jsx";
 import Hero from "./components/layout/Hero.jsx";
+import HomeMenu from "./components/layout/HomeMenu.jsx";
 
 
 export default function Home() {
@@ -7,7 +8,7 @@ export default function Home() {
     <>
       <Header />
       <Hero />
-    
+      <HomeMenu />
     </>
   )
 }
