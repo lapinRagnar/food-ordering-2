@@ -1,16 +1,54 @@
+"use client"
+
+import { useState } from "react"
 import { FaGoogle } from "react-icons/fa"
 
 const RegisterPage = () => {
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleFormSubmit = (ev) => {
+    ev.preventDefault()
+    fetch("/api/register", {
+      method: "POST",
+      body: JSON.stringify({
+        email,
+        password
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+  }
+
+
   return (
     <section className="my-[100px] ">
       
       <h1 className="text-center mb-10 text-5xl text-primary">S&apos;enregister</h1>
 
-      <form className="bloc max-w-sm mx-auto">
+      <form 
+        className="bloc max-w-sm mx-auto"
+        onSubmit={handleFormSubmit}  
+      >
 
-        <input type="email" placeholder="example@example.com" />
-        <input type="password" placeholder="Mot de passe" />
+        <input 
+          type="email" 
+          placeholder="example@example.com" 
+          value={email}
+          onChange={ev => setEmail(ev.target.value)}  
+        />
+        <input 
+          type="password" 
+          placeholder="Mot de passe" 
+          value={password}
+          onChange={ev => setPassword(ev.target.value)}
+        />
+        
+        
         <button className="flex items-center justify-center h-10 hover:bg-transparent" type="submit">Créer un compte</button>
+        
         <div className="my-2 text-gray-500 text-center">ou</div>
 
         <div className=" text-gray-500 text-center">
