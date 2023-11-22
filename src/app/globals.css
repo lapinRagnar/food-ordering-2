@@ -3,5 +3,29 @@
 @tailwind utilities;
 
 * {
-  @apply bg-gray-800 m-0 p-0 
+  @apply bg-gray-800 m-0 p-0 ;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+
+  @apply block w-full my-2 rounded-sm;
+  @apply border p-2 border-gray-500 bg-yellow-700;
+
+}
+
+button {
+  @apply w-full my-10 text-gray-700 font-semibold rounded-lg ;
+  @apply border-gray-100 px-2 pt-2 flex items-center justify-center;
+  @apply transition-all ease-in-out duration-700;
+}
+
+button[type="submit"], .submit {
+  @apply bg-yellow-700;
+  @apply border-0 bg-primary text-white;
+  
 }
