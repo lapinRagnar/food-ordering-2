@@ -72,7 +72,10 @@ const LoginPage = () => {
         <div className=" text-gray-500 text-center">
 
         </div>
-        <button className="flex items-center justify-center gap-2 m-0 hover:text-red-400">
+        <button 
+          className="flex items-center justify-center gap-2 m-0 hover:text-red-400"
+          onClick={() => signIn('google', {callbackUrl: '/'})}
+        >
           <FaGoogle className="bg-transparent " size={40}/>
           <p>se connecter avec google</p>
         </button>

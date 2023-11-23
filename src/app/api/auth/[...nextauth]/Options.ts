@@ -1,6 +1,9 @@
 import { User } from '@/app/models/User'
 import type {NextAuthOptions} from 'next-auth'
+
 import GitHubProvider from "next-auth/providers/github"
+import GoogleProvider from "next-auth/providers/google"
+
 import CredentialsProvider from "next-auth/providers/credentials"
 import mongoose from 'mongoose'
 import bcrypt from 'bcrypt'
@@ -12,6 +15,12 @@ export const options: NextAuthOptions = {
       clientId: process.env.GITHUB_ID as string,
       clientSecret: process.env.GITHUB_SECRET as string
     }),
+
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET
+    }),
+    
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
