@@ -8,12 +8,17 @@ const RegisterPage = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const handleFormSubmit = (ev) => {
+  const [creatingUser, setCreatingUser] = useState(false)
+  const [userCreated, setUserCreated] = useState(false)
+
+  const handleFormSubmit = async (ev) => {
     ev.preventDefault()
 
     console.log("dans on submit")
 
-    fetch("/api/register", {
+    setCreatingUser(true)
+
+    await fetch("/api/register", {
       method: "POST",
       body: JSON.stringify({
         email,
@@ -23,6 +28,9 @@ const RegisterPage = () => {
         'Content-Type': 'application/json'
       }
     })
+
+    setCreatingUser(false)
+
   }
 
 
@@ -40,17 +48,25 @@ const RegisterPage = () => {
           type="email" 
           placeholder="example@example.com" 
           value={email}
-          onChange={ev => setEmail(ev.target.value)}  
+          onChange={ev => setEmail(ev.target.value)}
+          disabled={creatingUser}  
         />
         <input 
           type="password" 
           placeholder="Mot de passe" 
           value={password}
           onChange={ev => setPassword(ev.target.value)}
+          disabled={creatingUser}
         />
         
         
-        <button className="flex items-center justify-center h-10 hover:bg-transparent" type="submit">Créer un compte</button>
+        <button 
+          className="flex items-center justify-center h-10 hover:bg-transparent" 
+          type="submit"
+          disabled={creatingUser}
+        >
+          Créer un compte
+        </button>
         
         <div className="my-2 text-gray-500 text-center">ou</div>
 
