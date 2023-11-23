@@ -37,7 +37,7 @@ button {
 }
 
 button[type="submit"], .submit {
-  @apply bg-yellow-700;
-  @apply border-0 bg-primary text-white;
+  @apply hover:bg-yellow-700;
+  @apply border-0  text-gray-300;
   
 }

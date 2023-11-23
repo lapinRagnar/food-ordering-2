@@ -36,7 +36,7 @@ const RegisterPage = () => {
     if (response.ok) {
       setUserCreated(true)
     } else {
-      setError(true)
+      setError(true)  
       setCreatingUser(false)
     }
 
@@ -72,7 +72,7 @@ const RegisterPage = () => {
       )}
 
       <form 
-        className="bloc max-w-sm mx-auto"
+        className={`bloc max-w-sm mx-auto ${userCreated ? "hidden" : ""} `}
         onSubmit={handleFormSubmit}  
       >
 
@@ -110,7 +110,15 @@ const RegisterPage = () => {
           <p>se connecter avec google</p>
         </button>
 
-
+        <div className="mt-5">
+          Vous avez deja un compte ? 
+          <Link 
+            href="/login"
+            className="bg-inherit hover:text-red-600 ml-2 border-b-2 border-b-red-400 "
+          >
+            Se connecter
+          </Link>
+        </div>
       </form>
 
     </section>
