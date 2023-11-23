@@ -8,7 +8,7 @@ const RegisterPage = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const [creatingUser, setCreatingUser] = useState(false)
+  const [creatingUser, setCreatingUser] = useState(true)
   const [userCreated, setUserCreated] = useState(false)
 
   const handleFormSubmit = async (ev) => {
