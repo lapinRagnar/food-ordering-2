@@ -22,12 +22,12 @@ input[type="email"]:disabled,
 input[type="password"]:disabled,
 input[type="text"]:disabled {
 
-  @apply bg-red-400;
+  @apply bg-red-400 cursor-not-allowed text-gray-700;
 
 }
 
 button:disabled, button[disabled], button[type="submit"][disabled], .submit[disabled] {
-  @apply bg-red-400;
+  @apply bg-red-400 cursor-not-allowed text-gray-600;
 }
 
 button {
