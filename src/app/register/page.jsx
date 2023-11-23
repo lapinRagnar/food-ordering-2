@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { useState } from "react"
 import { FaGoogle } from "react-icons/fa"
 
@@ -8,7 +9,7 @@ const RegisterPage = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const [creatingUser, setCreatingUser] = useState(true)
+  const [creatingUser, setCreatingUser] = useState(false)
   const [userCreated, setUserCreated] = useState(false)
 
   const handleFormSubmit = async (ev) => {
@@ -30,6 +31,7 @@ const RegisterPage = () => {
     })
 
     setCreatingUser(false)
+    setUserCreated(true)
 
   }
 
@@ -38,6 +40,15 @@ const RegisterPage = () => {
     <section className="my-[100px] ">
       
       <h1 className="text-center mb-10 text-5xl text-primary">S&apos;enregister</h1>
+
+      {userCreated && (
+        <div className="my-4 text-center">
+          <p>
+            Votre compte a bien été crée ! 
+            <Link className="hover:text-red-600 ml-2 border-b-2 border-b-red-400" href="/login">Se connecter</Link>
+          </p>
+        </div>
+      )}
 
       <form 
         className="bloc max-w-sm mx-auto"
