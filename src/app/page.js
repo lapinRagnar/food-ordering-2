@@ -1,3 +1,4 @@
+
 import Hero from "./components/layout/Hero.jsx"
 import HomeMenu from "./components/layout/HomeMenu.jsx"
 import SectionHeaders from "./components/layout/SectionHeaders.jsx"
@@ -6,6 +7,8 @@ import { GiRotaryPhone } from "react-icons/gi"
 
 
 export default function Home() {
+
+
   return (
     <>
       <Hero />
