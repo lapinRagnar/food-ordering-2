@@ -1,3 +1,5 @@
+import { AppProvider  } from './components/AppContext'
+
 import { Roboto } from 'next/font/google'
 import './globals.css'
 import Header from './components/layout/Header'
@@ -15,15 +17,21 @@ export default function RootLayout({ children }) {
       <body className={roboto.className}>
         <main className='max-w-[1400px] mx-auto min-h-[100vh]'>
           
-          <Header />
+
+          <AppProvider>
           
-          {children}
           
-          <footer className="border-t p-8 text-center text-gray-500 ">
+            <Header />
+
+            {children}
+            
+            <footer className="border-t p-8 text-center text-gray-500 ">
             &Copy; 2023@tous les droits réservés
-          </footer>
+            </footer>
+          
+          </AppProvider>
         
-          </main>
+        </main>
 
       </body>
     </html>

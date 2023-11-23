@@ -1,13 +1,21 @@
+"use client"
+
 import Link from "next/link"
 import {  MdContactPhone, MdMenuBook  } from "react-icons/md"
 import { FiInfo } from "react-icons/fi"
 import { SiHomeassistantcommunitystore } from "react-icons/si"
 import { TiUserAddOutline } from "react-icons/ti";
 import { IoMdLogIn } from "react-icons/io";
+import { useSession } from "next-auth/react"
 
 
 
 const Header = () => {
+
+  const session = useSession()
+  console.log("la session", session)
+
+
   return (
     <>
 
