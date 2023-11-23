@@ -12,14 +12,17 @@ const RegisterPage = () => {
   const [creatingUser, setCreatingUser] = useState(false)
   const [userCreated, setUserCreated] = useState(false)
 
+  const [error, setError] = useState(false)
+
   const handleFormSubmit = async (ev) => {
     ev.preventDefault()
 
     console.log("dans on submit")
 
     setCreatingUser(true)
+    setError(false)
 
-    await fetch("/api/register", {
+    const response = await fetch("/api/register", {
       method: "POST",
       body: JSON.stringify({
         email,
@@ -30,8 +33,18 @@ const RegisterPage = () => {
       }
     })
 
-    setCreatingUser(false)
-    setUserCreated(true)
+    if (response.ok) {
+      setUserCreated(true)
+    } else {
+      setError(true)
+      setCreatingUser(false)
+    }
+
+
+
+
+    // setCreatingUser(false)
+    // setUserCreated(true)
 
   }
 
@@ -43,11 +56,19 @@ const RegisterPage = () => {
 
       {userCreated && (
         <div className="my-4 text-center">
-          <p>
+          <p className="bg-green-400 w-[300px] bloc mx-auto p-4 rounded-md ">
             Votre compte a bien été crée ! 
-            <Link className="hover:text-red-600 ml-2 border-b-2 border-b-red-400" href="/login">Se connecter</Link>
+            <Link className="bg-inherit hover:text-red-600 ml-2 border-b-2 border-b-red-400" href="/login">Se connecter</Link>
           </p>
         </div>
+      )}
+
+      {error && (
+        <div className="my-4 text-center">
+        <p className="bg-red-400 w-[300px] bloc mx-auto p-4 rounded-md ">
+          Cet utilisateur existe déjà ! 
+        </p>
+      </div>
       )}
 
       <form 
