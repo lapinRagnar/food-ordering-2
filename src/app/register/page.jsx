@@ -109,6 +109,7 @@ const RegisterPage = () => {
 
         </div>
         <button 
+          type="button"
           className="flex items-center justify-center gap-2 m-0 hover:text-red-400"
           onClick={() => {signIn('google', {callbackUrl: '/'})}}
         >

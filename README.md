@@ -72,3 +72,9 @@ https://www.npmjs.com/package/bcrypt
 ```
 npm install bcrypt
 ```	
+
+## installation de MongoDBAdapter() - pour next auth
+
+```
+npm install @auth/mongodb-adapter mongodb
+```	
