@@ -1,5 +1,8 @@
+import { AppProvider  } from './components/AppContext'
+
 import { Roboto } from 'next/font/google'
 import './globals.css'
+import Header from './components/layout/Header'
 
 const roboto = Roboto({ subsets: ['latin'], weight: ['400', '500', '700', '900'] })
 
@@ -12,8 +15,22 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={roboto.className}>
-        <main className='max-w-[1400px] mx-auto '>
-          {children}
+        <main className='max-w-[1400px] mx-auto min-h-[100vh]'>
+          
+
+          <AppProvider>
+          
+          
+            <Header />
+
+            {children}
+            
+            <footer className="border-t p-8 text-center text-gray-500 ">
+            &Copy; 2023@tous les droits réservés
+            </footer>
+          
+          </AppProvider>
+        
         </main>
 
       </body>

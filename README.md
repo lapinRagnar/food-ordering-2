@@ -44,6 +44,37 @@ https://github.com/dejwid/food-ordering
 ## react-icons
 https://blog.logrocket.com/react-icons-comprehensive-tutorial-examples/
 
+https://react-icons.github.io/react-icons/search/#q=google
+
+
 ## tailwind en francais
 https://pixenjoy.com/fr/notes/le-framework-tailwindcss#:~:text=Tailwind%20g%C3%A8re%20la%20gestion%20du,on%20applique%20aux%20classes%20utilitaires.&text=Par%20d%C3%A9faut%2C%20Tailwind%20utilise%20des,de%20ruptures%20%22mobile%20first%22.
 
+## installation de next auth
+https://next-auth.js.org/getting-started/example
+
+```
+npm install next-auth
+```
+
+## pour la database c mongodb atlas
+
+## ORM : mongoose
+https://mongoosejs.com/docs/index.html
+
+```
+npm install mongoose
+```	
+
+## hasher le mot de passe
+https://www.npmjs.com/package/bcrypt
+
+```
+npm install bcrypt
+```	
+
+## installation de MongoDBAdapter() - pour next auth
+
+```
+npm install @auth/mongodb-adapter mongodb
+```	

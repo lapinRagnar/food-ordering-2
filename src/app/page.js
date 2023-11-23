@@ -1,4 +1,4 @@
-import Header from "./components/layout/Header.jsx"
+
 import Hero from "./components/layout/Hero.jsx"
 import HomeMenu from "./components/layout/HomeMenu.jsx"
 import SectionHeaders from "./components/layout/SectionHeaders.jsx"
@@ -7,9 +7,10 @@ import { GiRotaryPhone } from "react-icons/gi"
 
 
 export default function Home() {
+
+
   return (
     <>
-      <Header />
       <Hero />
       <HomeMenu />
 
@@ -48,10 +49,6 @@ export default function Home() {
         </div>
 
       </section>
-
-      <footer className="border-t p-8 text-center text-gray-500 ">
-        &Copy; 2023@tous les droits réservés
-      </footer>
 
     </>
   )
