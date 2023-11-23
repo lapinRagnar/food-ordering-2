@@ -32,7 +32,6 @@ const Hero = () => {
       <div className="sm:col-span-2 w-full  mt-5 ">
         <Image 
           className="rounded-lg w-full"
-          objectFit="contain"
           src={'/pizza1.jpg'}
           alt="pizza"
           width={"800"}
