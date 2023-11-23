@@ -18,15 +18,22 @@ const Header = () => {
   console.log("la session", session)
 
   const status = session.status
+  console.log("le status", status)
 
-  console.log("le status", status);
+  const userData = session.data?.user
+  let userName = userData?.name || userData?.email
+
+  // recuperer juste le nome de l'utilisateur
+  if (userName?.includes(' ')) {
+    userName = userName.split(' ')[0]
+  }
 
   return (
     <>
 
       <header className=" mt-5 flex flex-col justify-center gap-5 items-center  md:justify-center md:flex-row md:items-center ">
 
-        <Link href="/" className="text-primary font-bold md:text-2xl text-3xl">Pizza lapinRagnar</Link>
+        <Link href="/" className="text-primary font-bold md:text-2xl text-3xl whitespace-nowrap">Pizza lapinRagnar</Link>
 
         <div className="flex items-center justify-between md:w-[800px] w-[400px] h-full ">
           
@@ -49,26 +56,39 @@ const Header = () => {
 
             <div className="flex items-center gap-1 cursor-pointer hover:text-green-500 ">
               <MdContactPhone size={25} />
-              <Link href={''} className="hidden sm:block">Contact</Link>
+              <Link href={''} className="hidden sm:block m-0">Contact</Link>
             </div>
 
           </nav>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center justify-center gap-2">
 
             {status === 'authenticated' && (
 
-              <div 
-                className="flex items-center justify-center gap-1 cursor-pointer hover:text-green-500 text-red-400"
-                onClick={() => signOut()}  
-              >
-                <IoMdLogOut size={35} />
-                <button 
-                  className="hidden sm:block"
+              <>
+              
+
+                <Link 
+                  href={'/profile'}
+                  className="text-green-800 font-bold whitespace-nowrap"
                 >
-                  Logout
-                </button>
-              </div>
+                  Bonjour, {userName}
+                </Link>
+                
+
+                <div 
+                  className="m-0 flex items-center justify-center gap-1 cursor-pointer hover:text-green-500 text-red-400"
+                  onClick={() => signOut()}  
+                >
+                  <IoMdLogOut size={35} />
+                  {/*<button 
+                    className="hidden sm:block m-0"
+                  >
+                    Logout
+                  </button>*/}
+                </div>
+              
+              </>
 
             )}
 
