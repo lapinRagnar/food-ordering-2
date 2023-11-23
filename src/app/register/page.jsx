@@ -10,6 +10,9 @@ const RegisterPage = () => {
 
   const handleFormSubmit = (ev) => {
     ev.preventDefault()
+
+    console.log("dans on submit")
+
     fetch("/api/register", {
       method: "POST",
       body: JSON.stringify({

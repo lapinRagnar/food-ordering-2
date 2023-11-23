@@ -57,3 +57,12 @@ https://next-auth.js.org/getting-started/example
 npm install next-auth
 ```
 
+## pour la database c mongodb atlas
+
+## ORM : mongoose
+https://mongoosejs.com/docs/index.html
+
+```
+npm install mongoose
+```	
+
