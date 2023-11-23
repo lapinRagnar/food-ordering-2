@@ -66,3 +66,9 @@ https://mongoosejs.com/docs/index.html
 npm install mongoose
 ```	
 
+## hasher le mot de passe
+https://www.npmjs.com/package/bcrypt
+
+```
+npm install bcrypt
+```	
