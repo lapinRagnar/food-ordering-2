@@ -1,4 +1,4 @@
-import mongoose, {Schema}  from "mongoose"
+import  {Schema, model, models}  from "mongoose"
 
 const UserSchema = new Schema({
   email: {type: String, required: true, unique: true},
@@ -13,4 +13,4 @@ const UserSchema = new Schema({
   }
 }, {timestamps: true})
 
-export const User = mongoose.models?.User || mongoose.model("User", UserSchema)
+export const User = models?.User || model("User", UserSchema)
