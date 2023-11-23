@@ -4,9 +4,11 @@ import Link from "next/link"
 import {  MdContactPhone, MdMenuBook  } from "react-icons/md"
 import { FiInfo } from "react-icons/fi"
 import { SiHomeassistantcommunitystore } from "react-icons/si"
-import { TiUserAddOutline } from "react-icons/ti";
-import { IoMdLogIn } from "react-icons/io";
-import { useSession } from "next-auth/react"
+import { TiUserAddOutline } from "react-icons/ti"
+import { IoMdLogOut } from "react-icons/io"
+
+import { IoMdLogIn } from "react-icons/io"
+import { signOut, useSession } from "next-auth/react"
 
 
 
@@ -15,6 +17,9 @@ const Header = () => {
   const session = useSession()
   console.log("la session", session)
 
+  const status = session.status
+
+  console.log("le status", status);
 
   return (
     <>
@@ -50,14 +55,40 @@ const Header = () => {
           </nav>
 
           <div className="flex items-center gap-2">
-            <div className="flex items-center gap-1 cursor-pointer hover:text-green-500 text-red-400">
-              <IoMdLogIn size={25} />
-              <Link href={'/login'} className="hidden sm:block">Login</Link>
-            </div>
-            <div className="flex items-center gap-1 cursor-pointer hover:text-green-500 text-red-400">
-              <TiUserAddOutline size={25} />
-              <Link href={'/register'} className="hidden sm:block">Register</Link>
-            </div>
+
+            {status === 'authenticated' && (
+
+              <div 
+                className="flex items-center justify-center gap-1 cursor-pointer hover:text-green-500 text-red-400"
+                onClick={() => signOut()}  
+              >
+                <IoMdLogOut size={35} />
+                <button 
+                  className="hidden sm:block"
+                >
+                  Logout
+                </button>
+              </div>
+
+            )}
+
+            {status === 'unauthenticated' && (
+              <>
+
+                <div className="flex items-center gap-1 cursor-pointer hover:text-green-500 text-red-400">
+                  <IoMdLogIn size={25} />
+                  <Link href={'/login'} className="hidden sm:block">Login</Link>
+                </div>
+                <div className="flex items-center gap-1 cursor-pointer hover:text-green-500 text-red-400">
+                  <TiUserAddOutline size={25} />
+                  <Link href={'/register'} className="hidden sm:block">Register</Link>
+                </div>
+              
+              
+              </>
+            )}
+
+
           </div>
 
         </div>
