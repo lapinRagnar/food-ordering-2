@@ -1,6 +1,10 @@
+import { User } from '@/app/models/User'
 import type {NextAuthOptions} from 'next-auth'
 import GitHubProvider from "next-auth/providers/github"
 import CredentialsProvider from "next-auth/providers/credentials"
+import mongoose from 'mongoose'
+import bcrypt from 'bcrypt'
+
 
 export const options: NextAuthOptions = {
   providers: [
@@ -11,13 +15,24 @@ export const options: NextAuthOptions = {
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "jsmith" },
+        email: { label: "Email", type: "email", placeholder: "Ton email" },
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials, req) {
 
         console.log("mes credentials", credentials)
+
+        const { email, password } = credentials
+
+        mongoose.connect(process.env.MONGO_URL)
+        const user = await User.findOne({ email })
         
+        const passwordOk = user && bcrypt.compareSync(password, user.password)
+
+        if (passwordOk) {
+          return user
+        }
+
         // const res = await fetch("/your/endpoint", {
         //   method: 'POST',
         //   body: JSON.stringify(credentials),
@@ -31,11 +46,7 @@ export const options: NextAuthOptions = {
         // }
         // Return null if user data could not be retrieved
 
-        const user =  {id: 1, email: 'user1@gmail.com', password: 'lapinragnar'}
-        
-        if (credentials?.username === user.email && credentials?.password === user.password) {
-          return user
-        }
+
 
 
         return null
