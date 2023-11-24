@@ -55,7 +55,7 @@ const RegisterPage = () => {
   return (
     <section className="my-[100px] ">
       
-      <h1 className="text-center mb-10 text-5xl text-primary">S&apos;enregister</h1>
+      <h1 className="text-center mb-5 text-5xl text-primary font-bold font-weight-900 uppercase from-neutral-800">S&apos;enregister</h1>
 
       {userCreated && (
         <div className="my-4 text-center">

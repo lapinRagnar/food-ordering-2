@@ -35,7 +35,7 @@ const LoginPage = () => {
 
     <section className="my-[100px] ">
       
-      <h1 className="text-center mb-10 text-5xl text-primary">Se connecter</h1>
+      <h1 className="text-center mb-5 text-5xl text-primary font-bold font-weight-900 uppercase from-neutral-800">Se connecter</h1>
 
 
       <form 
