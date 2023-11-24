@@ -3,13 +3,17 @@
 import { useSession } from "next-auth/react"
 import Image from "next/image"
 import { redirect } from "next/navigation"
+import { useState } from "react"
 
 const ProfilePage = () => {
+  
 
   const session = useSession()
   console.log("la session dans profile", session)
 
   const {status} = session
+
+  const [userName, setUserName] = useState(session.data?.user?.name || '')
 
   if (status === 'loading') {
     return 'Chargement en cours...'
@@ -54,6 +58,8 @@ const ProfilePage = () => {
               type="text" 
               placeholder="Nom et prenom" 
               className=""
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
             />
             <input type="email" value={session.data?.user?.email} disabled />
             <button className="m-0 p-0 h-10  whitespace-nowrap" type="submit">Enregister</button>
