@@ -36,7 +36,7 @@ const ProfilePage = () => {
         Profile
       </h1>
 
-      <form className="max-w-xl mx-auto border">
+      <div className="max-w-xl mx-auto border">
 
         <div className="flex items-center gap-8">
           
@@ -53,7 +53,7 @@ const ProfilePage = () => {
             </div>
           </div>
 
-          <div className="grow">
+          <form className="grow">
             <input 
               type="text" 
               placeholder="Nom et prenom" 
@@ -63,10 +63,10 @@ const ProfilePage = () => {
             />
             <input type="email" value={session.data?.user?.email} disabled />
             <button className="m-0 p-0 h-10  whitespace-nowrap" type="submit">Enregister</button>
-          </div>
+          </form>
         </div>
       
-      </form>
+      </div>
 
 
     </section>
