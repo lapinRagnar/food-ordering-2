@@ -32,10 +32,32 @@ const ProfilePage = () => {
         Profile
       </h1>
 
-      <form className="max-w-sm mx-auto border">
+      <form className="max-w-xl mx-auto border">
 
-        <div>
-          <Image src={userImage} alt="user image" width={64} height={64} />
+        <div className="flex items-center gap-8">
+          
+          <div>
+            <div className="bg-gray-700 p-2 rounded-lg flex flex-col items-center justify-center ">
+              <Image 
+                src={userImage} 
+                alt="user image" 
+                width={80} 
+                height={80} 
+                className="rounded-full"
+              />
+              <button className="m-0 p-0 text-gray-200 hover:text-green-500 hover:text-lg whitespace-nowrap" type="button">Modifier avatar</button>
+            </div>
+          </div>
+
+          <div className="grow">
+            <input 
+              type="text" 
+              placeholder="Nom et prenom" 
+              className=""
+            />
+            <input type="email" value={session.data?.user?.email} disabled />
+            <button className="m-0 p-0 h-10  whitespace-nowrap" type="submit">Enregister</button>
+          </div>
         </div>
       
       </form>
