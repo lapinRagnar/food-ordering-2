@@ -25,6 +25,21 @@ const ProfilePage = () => {
 
   const userImage = session.data?.user?.image
 
+  const handleProfileInfoUpdate = async (ev) => {
+    ev.preventDefault()
+    const response = await fetch('/api/profile', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: userName
+      })
+    })
+
+
+  }
+
   
   return (
     <section>
@@ -53,7 +68,10 @@ const ProfilePage = () => {
             </div>
           </div>
 
-          <form className="grow">
+          <form 
+            className="grow"
+            onClick={handleProfileInfoUpdate}
+            >
             <input 
               type="text" 
               placeholder="Nom et prenom" 
