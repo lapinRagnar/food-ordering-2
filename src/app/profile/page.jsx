@@ -3,7 +3,7 @@
 import { useSession } from "next-auth/react"
 import Image from "next/image"
 import { redirect } from "next/navigation"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 const ProfilePage = () => {
   
@@ -13,7 +13,13 @@ const ProfilePage = () => {
 
   const {status} = session
 
-  const [userName, setUserName] = useState(session.data?.user?.name || '')
+  const [userName, setUserName] = useState('')
+
+  useEffect(() => {
+    if (status === 'authenticated') {
+      setUserName(session.data?.user?.name)
+    } 
+  }, [status, session])
 
   if (status === 'loading') {
     return 'Chargement en cours...'
