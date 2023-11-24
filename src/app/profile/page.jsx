@@ -1,6 +1,7 @@
 "use client"
 
 import { useSession } from "next-auth/react"
+import Image from "next/image"
 import { redirect } from "next/navigation"
 
 const ProfilePage = () => {
@@ -18,6 +19,8 @@ const ProfilePage = () => {
     return redirect('/login')
   }
 
+  const userImage = session.data?.user?.image
+
   
   return (
     <section>
@@ -28,6 +31,14 @@ const ProfilePage = () => {
         font-bold font-weight-900 uppercase from-neutral-800">
         Profile
       </h1>
+
+      <form className="max-w-sm mx-auto border">
+
+        <div>
+          <Image src={userImage} alt="user image" width={64} height={64} />
+        </div>
+      
+      </form>
 
 
     </section>
