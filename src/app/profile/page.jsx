@@ -15,6 +15,9 @@ const ProfilePage = () => {
 
   const [userName, setUserName] = useState('')
 
+  const [saved, setSaved] = useState(false)
+  const [isSaving, setIsSaving] = useState(false)
+
   useEffect(() => {
     if (status === 'authenticated') {
       setUserName(session.data?.user?.name)
@@ -33,6 +36,10 @@ const ProfilePage = () => {
 
   const handleProfileInfoUpdate = async (ev) => {
     ev.preventDefault()
+
+    setSaved(false)
+    setIsSaving(true)
+
     const response = await fetch('/api/profile', {
       method: 'PUT',
       headers: {
@@ -43,6 +50,11 @@ const ProfilePage = () => {
       })
     })
 
+    setIsSaving(false)
+
+    if (response.ok) {
+      setSaved(true)
+    }
 
   }
 
@@ -57,7 +69,33 @@ const ProfilePage = () => {
         Profile
       </h1>
 
+      
       <div className="max-w-xl mx-auto border">
+
+        {saved && (
+          <h2 
+            className="text-center bg-green-700 rounded-md
+              border-violet-400 
+              shadow-md shadow-fuchsia-700
+              mb-10
+            "
+          >
+            Le profile à bien été mise à jour!
+          </h2>
+        )}
+
+        {isSaving && (
+          <h2 
+            className="text-center bg-zinc-600 rounded-md
+              border-violet-400 
+              shadow-md shadow-fuchsia-700
+              mb-10
+            "
+          >
+            Modification en cours...
+          </h2>
+        )}
+
 
         <div className="flex items-center gap-8">
           
