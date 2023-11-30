@@ -47,6 +47,47 @@ npm install @auth/mongodb-adapter mongodb
 voir code
 
 
+## pour l'upload des images, on utilise aws console d'amazon
+https://console.cloudinary.com/pm/c-d0f308b3ea64518b5337859122dd43/getting-started
+
+## next cloudinary integration
+https://cloudinary.com/guides/front-end-development/integrating-cloudinary-with-next-js
+
+```
+npm install next-cloudinary
+```	
+
+variable d'environnement : NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME 
+
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
+CLOUDINARY_NAME=
+
+https://www.youtube.com/watch?v=P0NE5eUOod4
+https://cloudinary.com/blog/guest_post/upload-images-with-react-dropzone
+
+## tuto cloudinary et multer
+https://www.youtube.com/watch?v=oUtd_PDnROA
+https://www.youtube.com/watch?v=g-oLU7q__kM
+
+
+## un autre documentation
+https://cloudinary.com/documentation/upload_images#code_explorer_upload_multiple_files_using_a_form_signed
+
+## derniere documentation - installation cloudinary
+https://cloudinary.com/documentation/node_integration#installation_and_setup
+
+https://www.youtube.com/watch?v=kK-XtyDuUD4
+
+## tuto Photo Album Next.js Tutorial (with Server Actions, Cloudinary, Shadcn)
+https://www.youtube.com/watch?v=MC6D4vylKTc&t=1236s
+
+
+## site pour trouver des icons
+https://heroicons.com/
+
+
 ## Getting Started
 
 

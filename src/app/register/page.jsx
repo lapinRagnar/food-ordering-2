@@ -29,7 +29,8 @@ const RegisterPage = () => {
       method: "POST",
       body: JSON.stringify({
         email,
-        password
+        password,
+        imageId: "nwtbuacukjthvuvhwvki"
       }),
       headers: {
         'Content-Type': 'application/json'
@@ -111,7 +112,7 @@ const RegisterPage = () => {
         <button 
           type="button"
           className="flex items-center justify-center gap-2 m-0 hover:text-red-400"
-          onClick={() => {signIn('google', {callbackUrl: '/'})}}
+          onClick={() => {signIn('google',  {redirect: false, callbackUrl: '/profile'})}}
         >
           <FaGoogle className="bg-transparent " size={40}/>
           <p>se connecter avec google</p>

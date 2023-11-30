@@ -1,8 +1,10 @@
 "use client"
 
-import {signIn} from "next-auth/react"
+import {signIn, useSession } from "next-auth/react"
 
-import { useState } from "react"
+import { useRouter, redirect } from "next/navigation"
+import { NextResponse } from "next/server"
+import { useEffect, useState } from "react"
 import { FaGoogle } from "react-icons/fa"
 
 const LoginPage = () => {
@@ -11,6 +13,17 @@ const LoginPage = () => {
   const [password, setPassword] = useState('')
 
   const [isLogin, setIsLogin] = useState(true)
+
+  const router = useRouter()
+
+  const { data: session, status: sessionStatus } = useSession()
+  console.log("la session dans login page", session)
+
+  useEffect(() => {
+    if (sessionStatus === "authenticated") {
+      router.replace("/profile")
+    }
+  }, [sessionStatus, router])
 
 
 
@@ -23,7 +36,29 @@ const LoginPage = () => {
 
     setIsLogin(true)
 
-    await signIn('credentials', {email, password, callbackUrl: '/'})
+    try {
+      // const connection = await signIn('credentials', {email, password, callbackUrl: '/'})
+      // const res = await signIn('credentials', {email, password,  redirect: false, callbackUrl: '/'})
+
+      const res = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      })
+
+      console.log("res dans login page handleformsubmit = ", res)
+
+      if (res.ok) {
+        // router.replace('/profile')
+        // router.push('/')
+        // router.refresh()
+
+        return router.push('/')
+      }
+
+    }  catch (error) {
+      console.log("error dans login page handleformsubmit = ", error)
+    }
 
     setIsLogin(false)
 
@@ -75,6 +110,7 @@ const LoginPage = () => {
         <button
           type="button" 
           className="flex items-center justify-center gap-2 m-0 hover:text-red-400"
+          /* onClick={() => signIn('google', {redirect: true, callbackUrl: '/'})} */
           onClick={() => signIn('google', {callbackUrl: '/'})}
         >
           <FaGoogle className="bg-transparent " size={40}/>

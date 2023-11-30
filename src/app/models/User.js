@@ -12,7 +12,8 @@ const UserSchema = new Schema({
         throw new Error("Le mot de passe doit contenir au moins 3 caractères")
       }
     }
-  }
+  },
+  imageId: {type: String}
 }, {timestamps: true})
 
 UserSchema.pre("save", function(next) {
@@ -32,6 +33,7 @@ UserSchema.pre("save", function(next) {
 
       // override the cleartext password with the hashed one
       user.password = hash;
+      user.imageId = "gl63bhqwdlkxsb54bzid"
       next();
     })
   })

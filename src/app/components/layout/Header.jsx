@@ -1,5 +1,7 @@
 "use client"
 
+import { SessionProvider } from 'next-auth/react'
+
 import Link from "next/link"
 import {  MdContactPhone, MdMenuBook  } from "react-icons/md"
 import { FiInfo } from "react-icons/fi"
@@ -10,28 +12,38 @@ import { IoMdLogOut } from "react-icons/io"
 import { IoMdLogIn } from "react-icons/io"
 import { signOut, useSession } from "next-auth/react"
 
+import { useEffect, useState } from "react"
+
 
 
 const Header = () => {
+  
 
-  const session = useSession()
-  console.log("la session", session)
+  
+  const { data: session, status } = useSession()
+  console.log("la session dans la navbar", session)
 
-  const status = session.status
-  console.log("le status", status)
+  useEffect(() => {}, [session])
 
-  const userData = session.data?.user
-  let userName = userData?.name || userData?.email
+  // const status = session.status
+  // console.log("le status ----", status)
+  // console.log("la session dans header", session)
+
+
+  // const userData = session.data?.user
+  // let userName = userData?.name || userData?.email
 
   // recuperer juste le nome de l'utilisateur
-  if (userName?.includes(' ')) {
-    userName = userName.split(' ')[0]
-  }
+  // if (userName?.includes(' ')) {
+  //   userName = userName.split(' ')[0]
+  // }
 
   return (
     <>
 
-      <header className=" mt-5 flex flex-col justify-center gap-5 items-center  md:justify-center md:flex-row md:items-center ">
+      
+    
+        <header className=" mt-5 flex flex-col justify-center gap-5 items-center  md:justify-center md:flex-row md:items-center ">
 
         <Link href="/" className="text-primary font-bold md:text-2xl text-3xl whitespace-nowrap">Pizza lapinRagnar</Link>
 
@@ -63,16 +75,15 @@ const Header = () => {
 
           <div className="flex items-center justify-center gap-2">
 
-            {status === 'authenticated' && (
+            { session ? (
 
-              <>
-              
+              <>              
 
                 <Link 
                   href={'/profile'}
                   className="text-green-800 font-bold whitespace-nowrap"
                 >
-                  Bonjour, {userName}
+                  Bonjour,  ({session?.user?.email})
                 </Link>
                 
 
@@ -90,9 +101,8 @@ const Header = () => {
               
               </>
 
-            )}
+            ) : (
 
-            {status === 'unauthenticated' && (
               <>
 
                 <div className="flex items-center gap-1 cursor-pointer hover:text-green-500 text-red-400">
@@ -106,16 +116,22 @@ const Header = () => {
               
               
               </>
-            )}
+            )
+          
+          }
+
+
 
 
           </div>
 
         </div>
 
-      </header>
+        </header>
 
-      <div className="md:border-b-2 border-primary mt-5"></div>
+        <div className="md:border-b-2 border-primary mt-5"></div>
+
+
 
     </>
   )

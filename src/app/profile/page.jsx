@@ -5,15 +5,23 @@ import Image from "next/image"
 import { redirect } from "next/navigation"
 import { useEffect, useState } from "react"
 
+import { CldUploadButton } from 'next-cloudinary'
+import { CldImage } from 'next-cloudinary'
+
 const ProfilePage = () => {
   
 
   const session = useSession()
+
   console.log("la session dans profile", session)
 
   const {status} = session
+  const { update } = session
 
   const [userName, setUserName] = useState('')
+  const [avatar, setAvatar] = useState('')
+  const [imageId, setImageId] = useState('gl63bhqwdlkxsb54bzid')
+
 
   const [saved, setSaved] = useState(false)
   const [isSaving, setIsSaving] = useState(false)
@@ -46,7 +54,8 @@ const ProfilePage = () => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        name: userName
+        name: userName,
+        imageId: "nwtbuacukjthvuvhwvki"
       })
     })
 
@@ -56,6 +65,64 @@ const ProfilePage = () => {
       setSaved(true)
     }
 
+  }
+
+  const handleFileChange = async (result) => {
+
+    console.log("la result", result)
+    console.log("result event = ", result.event)
+    
+    if (result.event === "success") {
+      setImageId(result.info.public_id)
+      
+      await fetch('/api/upload', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          asset_id: result.info.asset_id,
+          created_at: result.info.created_at,
+        }),
+      })
+    }
+    
+
+   /*  const files = ev.target.files
+    console.log("les files", files)
+
+    console.log("avant le if", files?.length === 1)
+
+    if (files?.length === 1) {
+
+      console.log("je passe la ")
+
+      const data = new FormData()
+      // data.set('file', files[0])
+      data.set('file', avatar)
+
+
+      await fetch('/api/upload', {
+        method: 'POST',
+        body: data,
+        // headers: {
+        //   'Content-Type': 'multipart/form-data'
+        // },
+      })
+    } */
+
+  }
+
+  const onChangeInputImageUpload = (ev) => {
+    const reader = new FileReader()
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setAvatarPreview(reader.result)
+      }
+    }
+
+    setAvatar(ev.target.files[0])
+    reader.readAsDataURL(ev.target.files[0])
   }
 
   
@@ -101,14 +168,36 @@ const ProfilePage = () => {
           
           <div>
             <div className="bg-gray-700 p-2 rounded-lg flex flex-col items-center justify-center ">
-              <Image 
-                src={userImage} 
-                alt="user image" 
-                width={80} 
-                height={80} 
-                className="rounded-full"
-              />
-              <button className="m-0 p-0 text-gray-200 hover:text-green-500 hover:text-lg whitespace-nowrap" type="button">Modifier avatar</button>
+
+              { imageId && (
+                <CldImage
+                  width="100"
+                  height="100"
+                  src={imageId}
+                  sizes="100vw"
+                  alt="mon image"
+                  className="rounded-full mb-3"
+                />
+              )}
+
+              <form>
+              
+                  <CldUploadButton
+                  className="
+                    m-0 p-0 text-gray-200 
+                    hover:text-green-500 hover:text-lg 
+                    whitespace-nowrap
+                    bg-transparent
+                    cursor-pointer
+                    "  
+                    uploadPreset="hwawxrhz"
+                    onUpload={handleFileChange}
+
+                  >
+                    Modifier
+                  </CldUploadButton>
+
+              </form>
             </div>
           </div>
 
@@ -125,6 +214,7 @@ const ProfilePage = () => {
             />
             <input type="email" value={session.data?.user?.email} disabled />
             <button className="m-0 p-0 h-10  whitespace-nowrap" type="submit">Enregister</button>
+
           </form>
         </div>
       

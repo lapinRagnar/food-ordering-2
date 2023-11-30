@@ -1,8 +1,12 @@
 import { User } from '@/app/models/User'
 import type {NextAuthOptions} from 'next-auth'
 
+import { Account, User as AuthUser } from "next-auth"
+
 import { MongoDBAdapter } from "@auth/mongodb-adapter"
+// import clientPromise  from '@/app/libs/mongoConnect'
 import clientPromise  from '@/app/libs/mongoConnect'
+import connect from "@/utils/db"
 
 import GitHubProvider from "next-auth/providers/github"
 import GoogleProvider from "next-auth/providers/google"
@@ -14,7 +18,7 @@ import bcrypt from 'bcrypt'
 
 export const options: NextAuthOptions = {
   adapter: MongoDBAdapter(clientPromise),
-  secret: process.env.SECRET,
+  secret: process.env.SECRET as string,
   providers: [
     GitHubProvider({
       clientId: process.env.GITHUB_ID as string,
@@ -27,25 +31,37 @@ export const options: NextAuthOptions = {
     }),
     
     CredentialsProvider({
+      id: 'credentials',
       name: 'Credentials',
       credentials: {
         email: { label: "Email", type: "email", placeholder: "Ton email" },
         password: { label: "Password", type: "password" }
       },
-      async authorize(credentials, req) {
+      async authorize(credentials: any) {
 
-        console.log("mes credentials", credentials)
+        console.log("mes credentials dans auth [next auth]", credentials)
 
-        const { email, password } = credentials
+        // const { email, password } = credentials
+        try {
 
-        mongoose.connect(process.env.MONGO_URL)
-        const user = await User.findOne({ email })
-        
-        const passwordOk = user && bcrypt.compareSync(password, user.password)
-
-        if (passwordOk) {
-          return user
+          await connect()
+          const user = await User.findOne({email: credentials.email})
+          console.log("mon user dans auth [next auth]", user)
+          
+         
+          if (user) {
+            
+            const passwordOk = user && bcrypt.compareSync(credentials.password, user.password)
+            if (passwordOk) {
+              return user
+            }
+          }
+        } catch (err) {
+          throw new Error(err)
         }
+        
+
+
 
         // const res = await fetch("/your/endpoint", {
         //   method: 'POST',
@@ -67,9 +83,62 @@ export const options: NextAuthOptions = {
       }
     })
   ],
-  pages: {
-    signIn: '/api/login',
 
-  }
+  callbacks: {
+    async signIn({ user, account }: { user: AuthUser; account: Account }) {
+      if (account?.provider == "credentials") {
+        return true;
+      }
+      if (account?.provider == "google") {
+        return true;
+      }
+
+
+      if (account?.provider == "github") {
+        await mongoose.connect(process.env.MONGO_URL);
+        try {
+          const existingUser = await User.findOne({ email: user.email });
+          if (!existingUser) {
+            const newUser = new User({
+              email: user.email,
+            });
+
+            await newUser.save();
+            return true;
+          }
+          return true;
+        } catch (err) {
+          console.log("Error saving user", err);
+          return false;
+        }
+      }
+    },
+  },
+  // pages: {
+  //   signIn: '/profile',
+
+  // },
+  // callbacks: {
+  //   async redirect({ url, baseUrl }) {
+  //     // Allows relative callback URLs
+  //     if (url.startsWith("/")) return `${baseUrl}${url}`
+  //     // Allows callback URLs on the same origin
+  //     else if (new URL(url).origin === baseUrl) return url
+  //     return baseUrl
+  //   }
+  // }
+  // callbacks: {
+  //   async session({ session, token }) {
+  //     return {
+  //       ...session,
+  //       user: {
+  //         ...session?.user,
+  //         id: token?.sub,
+  //       },
+  //       accessToken: token.accessToken,
+  //       error: token.error,
+  //     };
+  //   },
+  // }
 }
 
