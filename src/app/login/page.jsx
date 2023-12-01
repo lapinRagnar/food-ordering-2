@@ -2,8 +2,8 @@
 
 import {signIn, useSession } from "next-auth/react"
 
-import { useRouter, redirect } from "next/navigation"
-import { NextResponse } from "next/server"
+import { useRouter } from "next/navigation"
+
 import { useEffect, useState } from "react"
 import { FaGoogle } from "react-icons/fa"
 
@@ -14,18 +14,22 @@ const LoginPage = () => {
 
   const [isLogin, setIsLogin] = useState(true)
 
+  const [rafraichir, setRafraichir] = useState(false)
+
   const router = useRouter()
 
   const { data: session, status: sessionStatus } = useSession()
   console.log("la session dans login page router,  session et sessionStatus",router,  session, sessionStatus)
 
   useEffect(() => {
+    console.log("rafraichir la page", rafraichir);
     console.log("je suis dans le useEffect pour mettre à jour le lien profile --- avant router et session", router, session, sessionStatus)
     if (sessionStatus === "authenticated") {
       console.log("je suis dans le useEffect pour mettre à jour le lien profile", router, session, sessionStatus)
       router.replace("/")
+      router.refresh()
     }
-  }, [sessionStatus, router, session])
+  }, [sessionStatus, router, session, rafraichir])
 
 
 
@@ -57,6 +61,7 @@ const LoginPage = () => {
         router.push('/profile')
         router.replace('/')
         console.log("le router", router)
+        setRafraichir(true)
         router.refresh()
         
         
