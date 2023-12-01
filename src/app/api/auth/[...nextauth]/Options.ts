@@ -21,7 +21,7 @@ export const options: NextAuthOptions = {
   secret: process.env.SECRET as string,
   session: {
     // Set it as jwt instead of database
-    strategy: "database",
+    strategy: "jwt",
 
   },
   providers: [

@@ -56,8 +56,8 @@ const LoginPage = () => {
         console.log("je suis avant le redirect")
         router.push('/profile')
         router.replace('/')
-
         console.log("le router", router)
+        router.refresh()
         
         
       }
