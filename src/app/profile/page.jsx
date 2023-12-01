@@ -7,6 +7,8 @@ import { useEffect, useState } from "react"
 
 import { CldUploadButton } from 'next-cloudinary'
 import { CldImage } from 'next-cloudinary'
+import InfoBox from "../components/layout/InfoBox"
+import SuccessBox from "../components/layout/SuccessBox"
 
 const ProfilePage = () => {
   
@@ -89,43 +91,19 @@ const ProfilePage = () => {
       <div className="max-w-xl mx-auto border">
 
         {saved && (
-          <h2 
-            className="text-center bg-green-700 rounded-md
-              border-violet-400 
-              shadow-md shadow-fuchsia-700
-              mb-10
-            "
-          >
-            Le profile à bien été mise à jour!
-          </h2>
+          <SuccessBox>Le profile a bien été mis à jour!</SuccessBox>
         )}
 
         {isSaving && (
-          <h2 
-            className="text-center bg-zinc-600 rounded-md
-              border-violet-400 
-              shadow-md shadow-fuchsia-700
-              mb-10
-            "
-          >
-            Modification en cours...
-          </h2>
+          <InfoBox>Modification en cours...</InfoBox>
         )}
 
         {isUploading && (
-          <h2 
-          className="text-center bg-zinc-600 rounded-md
-            border-violet-400 
-            shadow-md shadow-fuchsia-700
-            mb-10
-          "
-          >
-            Uploading en cours...
-          </h2>
+          <InfoBox>Téléchargement en cours...</InfoBox>
         )}
 
 
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-8 mt-5">
           
           <div>
             <div className="bg-gray-700 p-2 rounded-lg flex flex-col items-center justify-center ">
