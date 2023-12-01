@@ -1,4 +1,6 @@
+
 import { AppProvider  } from './components/AppContext'
+
 
 import { getServerSession } from 'next-auth'
 import AuthProvider from '@/utils/SessionProvider'
@@ -18,7 +20,10 @@ export default async function RootLayout({ children}) {
 
   const session = await getServerSession()
 
+
+    
   console.log("la session dans RootLayout = ", session)
+
 
   return (
     <html lang="en">

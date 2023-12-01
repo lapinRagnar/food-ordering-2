@@ -1,6 +1,6 @@
 "use client"
 
-import { SessionProvider } from 'next-auth/react'
+import { useRouter } from 'next/navigation';
 
 import Link from "next/link"
 import {  MdContactPhone, MdMenuBook  } from "react-icons/md"
@@ -12,20 +12,21 @@ import { IoMdLogOut } from "react-icons/io"
 import { IoMdLogIn } from "react-icons/io"
 import { signOut, useSession } from "next-auth/react"
 
-import { useEffect, useState } from "react"
+import { useEffect, } from "react"
 
 
 
 const Header = () => {
   
-
+  const router = useRouter()
   
   const { data: session, status } = useSession()
   console.log("la session dans la navbar", session)
-
+  
   useEffect(() => {
+    router.refresh()
     console.log('je suis dans le useEffect', session)
-  }, [session])
+  }, [session, router])
 
   // const status = session.status
   // console.log("le status ----", status)
