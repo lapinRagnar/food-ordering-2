@@ -13,21 +13,23 @@ const ProfilePage = () => {
 
   const session = useSession()
 
-  console.log("la session dans profile", session)
+  console.log("la session dans profile page", session)
 
   const {status} = session
   const { update } = session
 
   const [userName, setUserName] = useState('')
-  const [avatar, setAvatar] = useState('')
   const [imageId, setImageId] = useState('gl63bhqwdlkxsb54bzid')
 
 
   const [saved, setSaved] = useState(false)
   const [isSaving, setIsSaving] = useState(false)
 
+  const [isUploading, setIsUploading] = useState(false)
+
   useEffect(() => {
     if (status === 'authenticated') {
+      console.log("le nom de l'user", session.data?.user?.name)
       setUserName(session.data?.user?.name)
     } 
   }, [status, session])
@@ -40,7 +42,7 @@ const ProfilePage = () => {
     return redirect('/login')
   }
 
-  const userImage = session.data?.user?.image
+  // const userImage = session.data?.user?.image
 
   const handleProfileInfoUpdate = async (ev) => {
     ev.preventDefault()
@@ -55,7 +57,7 @@ const ProfilePage = () => {
       },
       body: JSON.stringify({
         name: userName,
-        imageId: "nwtbuacukjthvuvhwvki"
+        imageId: imageId
       })
     })
 
@@ -67,67 +69,14 @@ const ProfilePage = () => {
 
   }
 
-  const handleFileChange = async (result) => {
 
-    console.log("la result", result)
-    console.log("result event = ", result.event)
-    
-    if (result.event === "success") {
-      setImageId(result.info.public_id)
-      
-      await fetch('/api/upload', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          asset_id: result.info.asset_id,
-          created_at: result.info.created_at,
-        }),
-      })
-    }
-    
-
-   /*  const files = ev.target.files
-    console.log("les files", files)
-
-    console.log("avant le if", files?.length === 1)
-
-    if (files?.length === 1) {
-
-      console.log("je passe la ")
-
-      const data = new FormData()
-      // data.set('file', files[0])
-      data.set('file', avatar)
-
-
-      await fetch('/api/upload', {
-        method: 'POST',
-        body: data,
-        // headers: {
-        //   'Content-Type': 'multipart/form-data'
-        // },
-      })
-    } */
-
-  }
-
-  const onChangeInputImageUpload = (ev) => {
-    const reader = new FileReader()
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        setAvatarPreview(reader.result)
-      }
-    }
-
-    setAvatar(ev.target.files[0])
-    reader.readAsDataURL(ev.target.files[0])
+  const uploadCloudinary = (result) => {
+    setImageId(result.info.public_id)
   }
 
   
   return (
-    <section>
+    <section className="min-h-[500px]">
       <h1 className="
         mt-10
         text-center 
@@ -163,6 +112,18 @@ const ProfilePage = () => {
           </h2>
         )}
 
+        {isUploading && (
+          <h2 
+          className="text-center bg-zinc-600 rounded-md
+            border-violet-400 
+            shadow-md shadow-fuchsia-700
+            mb-10
+          "
+          >
+            Uploading en cours...
+          </h2>
+        )}
+
 
         <div className="flex items-center gap-8">
           
@@ -191,7 +152,7 @@ const ProfilePage = () => {
                     cursor-pointer
                     "  
                     uploadPreset="hwawxrhz"
-                    onUpload={handleFileChange}
+                    onUpload={uploadCloudinary}
 
                   >
                     Modifier

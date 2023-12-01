@@ -16,9 +16,14 @@ export async function PUT(req) {
 
 
   if ('name' in data) {
-    // update user name
+    // update user name et imdageID du clounidary
     console.log("je passe la");
-    const result = await User.updateOne({email}, {name: data.name})
+    const result = await User.updateOne(
+      {email}, 
+      {name: data.name, 
+        imageId: data.imageId
+      }
+    )
 
     console.log("la result de l'update", result)
   }

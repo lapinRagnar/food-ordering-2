@@ -1,7 +1,7 @@
 import mongoose from "mongoose"
 import {User} from "@/app/models/User"
 
-export async function POST(req) {
+export async function PUT(req) {
 
   console.log("je suis dans POst api, la req est = ", req)
 
