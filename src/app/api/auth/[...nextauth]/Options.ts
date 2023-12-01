@@ -117,28 +117,6 @@ export const options: NextAuthOptions = {
   // pages: {
   //   signIn: '/profile',
 
-  // },
-  // callbacks: {
-  //   async redirect({ url, baseUrl }) {
-  //     // Allows relative callback URLs
-  //     if (url.startsWith("/")) return `${baseUrl}${url}`
-  //     // Allows callback URLs on the same origin
-  //     else if (new URL(url).origin === baseUrl) return url
-  //     return baseUrl
-  //   }
-  // }
-  // callbacks: {
-  //   async session({ session, token }) {
-  //     return {
-  //       ...session,
-  //       user: {
-  //         ...session?.user,
-  //         id: token?.sub,
-  //       },
-  //       accessToken: token.accessToken,
-  //       error: token.error,
-  //     };
-  //   },
-  // }
+
 }
 
