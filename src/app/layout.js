@@ -1,7 +1,7 @@
 import { AppProvider  } from './components/AppContext'
 
 import { getServerSession } from 'next-auth'
-import SessionProvider from '@/utils/SessionProvider'
+import AuthProvider from '@/utils/SessionProvider'
 
 import { Roboto } from 'next/font/google'
 import './globals.css'
@@ -28,7 +28,9 @@ export default async function RootLayout({ children}) {
         
         <AppProvider>
         
-          <SessionProvider session={session}>
+          <AuthProvider session={session}>
+
+            
             
             <Header />
 
@@ -38,7 +40,7 @@ export default async function RootLayout({ children}) {
             &Copy; 2023@tous les droits réservés
             </footer>
 
-          </SessionProvider>    
+          </AuthProvider>    
 
         </AppProvider>
 

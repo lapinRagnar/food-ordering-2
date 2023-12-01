@@ -23,7 +23,9 @@ const Header = () => {
   const { data: session, status } = useSession()
   console.log("la session dans la navbar", session)
 
-  useEffect(() => {}, [session])
+  useEffect(() => {
+    console.log('je suis dans le useEffect', session)
+  }, [session])
 
   // const status = session.status
   // console.log("le status ----", status)

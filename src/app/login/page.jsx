@@ -17,13 +17,15 @@ const LoginPage = () => {
   const router = useRouter()
 
   const { data: session, status: sessionStatus } = useSession()
-  console.log("la session dans login page", session)
+  console.log("la session dans login page router,  session et sessionStatus",router,  session, sessionStatus)
 
   useEffect(() => {
+    console.log("je suis dans le useEffect pour mettre à jour le lien profile --- avant router et session", router, session, sessionStatus)
     if (sessionStatus === "authenticated") {
-      router.replace("/profile")
+      console.log("je suis dans le useEffect pour mettre à jour le lien profile", router, session, sessionStatus)
+      router.replace("/")
     }
-  }, [sessionStatus, router])
+  }, [sessionStatus, router, session])
 
 
 
@@ -44,16 +46,20 @@ const LoginPage = () => {
         email,
         password,
         redirect: false,
+        callbackUrl: 'http://localhost:3000',
       })
 
       console.log("res dans login page handleformsubmit = ", res)
 
       if (res.ok) {
-        // router.replace('/profile')
-        // router.push('/')
         // router.refresh()
+        console.log("je suis avant le redirect")
+        router.push('/profile')
+        router.replace('/')
 
-        return router.push('/')
+        console.log("le router", router)
+        
+        
       }
 
     }  catch (error) {

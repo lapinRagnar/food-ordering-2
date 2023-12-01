@@ -19,6 +19,11 @@ import bcrypt from 'bcrypt'
 export const options: NextAuthOptions = {
   adapter: MongoDBAdapter(clientPromise),
   secret: process.env.SECRET as string,
+  session: {
+    // Set it as jwt instead of database
+    strategy: "database",
+
+  },
   providers: [
     GitHubProvider({
       clientId: process.env.GITHUB_ID as string,
@@ -53,6 +58,9 @@ export const options: NextAuthOptions = {
             
             const passwordOk = user && bcrypt.compareSync(credentials.password, user.password)
             if (passwordOk) {
+
+              console.log("je verifie le password et retourne le user")
+              
               return user
             }
           }
@@ -87,6 +95,7 @@ export const options: NextAuthOptions = {
   callbacks: {
     async signIn({ user, account }: { user: AuthUser; account: Account }) {
       if (account?.provider == "credentials") {
+        console.log("je suis dans le callback sign in")
         return true;
       }
       if (account?.provider == "google") {
@@ -113,6 +122,9 @@ export const options: NextAuthOptions = {
         }
       }
     },
+
+
+    
   },
   // pages: {
   //   signIn: '/profile',
