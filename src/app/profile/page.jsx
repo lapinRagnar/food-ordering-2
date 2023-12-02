@@ -51,7 +51,7 @@ const ProfilePage = () => {
 
     toast('Mise à jour en cours...')
 
-    const response = await fetch('/api/profilea', {
+    const response = await fetch('/api/profile', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
