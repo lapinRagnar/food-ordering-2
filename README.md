@@ -88,6 +88,18 @@ https://www.youtube.com/watch?v=MC6D4vylKTc&t=1236s
 https://heroicons.com/
 
 
+## react hot toast - pour la notification
+https://react-hot-toast.com/
+
+## react toastify - pour la notification
+https://fkhadra.github.io/react-toastify/
+
+## reac sooner
+https://sonner.emilkowal.ski/
+
+
+
+
 ## Getting Started
 
 

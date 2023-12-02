@@ -9,6 +9,7 @@ import { CldUploadButton } from 'next-cloudinary'
 import { CldImage } from 'next-cloudinary'
 import InfoBox from "../components/layout/InfoBox"
 import SuccessBox from "../components/layout/SuccessBox"
+import {toast} from "sonner"
 
 const ProfilePage = () => {
   
@@ -24,10 +25,7 @@ const ProfilePage = () => {
   const [imageId, setImageId] = useState('gl63bhqwdlkxsb54bzid')
 
 
-  const [saved, setSaved] = useState(false)
-  const [isSaving, setIsSaving] = useState(false)
 
-  const [isUploading, setIsUploading] = useState(false)
 
   useEffect(() => {
     if (status === 'authenticated') {
@@ -49,10 +47,11 @@ const ProfilePage = () => {
   const handleProfileInfoUpdate = async (ev) => {
     ev.preventDefault()
 
-    setSaved(false)
-    setIsSaving(true)
 
-    const response = await fetch('/api/profile', {
+
+    toast('Mise à jour en cours...')
+
+    const response = await fetch('/api/profilea', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -63,17 +62,22 @@ const ProfilePage = () => {
       })
     })
 
-    setIsSaving(false)
 
     if (response.ok) {
-      setSaved(true)
+      toast.success('Mise à jour terminé!')
+    } else {
+      toast.error("Une erreur est survenue, aieuuuuh!")
     }
 
   }
 
 
   const uploadCloudinary = (result) => {
+    toast.success('Téléchargement...')
+
     setImageId(result.info.public_id)
+
+    toast.success('teléchargement terminé!')
   }
 
   
@@ -90,17 +94,6 @@ const ProfilePage = () => {
       
       <div className="max-w-xl mx-auto border">
 
-        {saved && (
-          <SuccessBox>Le profile a bien été mis à jour!</SuccessBox>
-        )}
-
-        {isSaving && (
-          <InfoBox>Modification en cours...</InfoBox>
-        )}
-
-        {isUploading && (
-          <InfoBox>Téléchargement en cours...</InfoBox>
-        )}
 
 
         <div className="flex items-center gap-8 mt-5">
