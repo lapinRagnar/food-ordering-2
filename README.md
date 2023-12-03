@@ -72,6 +72,11 @@ https://www.youtube.com/watch?v=oUtd_PDnROA
 https://www.youtube.com/watch?v=g-oLU7q__kM
 
 
+### comment gerer l'erreur JWT_SESSION_ERROR
+https://www.answeroverflow.com/m/1096969046227943584
+
+
+
 ## un autre documentation
 https://cloudinary.com/documentation/upload_images#code_explorer_upload_multiple_files_using_a_form_signed
 
@@ -97,6 +102,11 @@ https://fkhadra.github.io/react-toastify/
 ## reac sooner
 https://sonner.emilkowal.ski/
 
+## un autre tuto de next-auth
+https://www.youtube.com/watch?v=MNm1XhDjX1s
+https://github.com/ClarityCoders/NextAuthTutorial-Video
+
+https://www.youtube.com/watch?v=fcySGWgRuu8&t=177s
 
 
 

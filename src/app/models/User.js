@@ -3,6 +3,8 @@ import bcrypt from "bcrypt"
 
 const UserSchema = new Schema({
   name: {type: String},
+  imageId: {type: String},
+  token: {type: String},
   email: {type: String, required: true, unique: true},
   password: {
     type: String, 
@@ -13,7 +15,7 @@ const UserSchema = new Schema({
       }
     }
   },
-  imageId: {type: String}
+
 }, {timestamps: true})
 
 UserSchema.pre("save", function(next) {
@@ -33,7 +35,6 @@ UserSchema.pre("save", function(next) {
 
       // override the cleartext password with the hashed one
       user.password = hash;
-      user.imageId = "gl63bhqwdlkxsb54bzid"
       next();
     })
   })

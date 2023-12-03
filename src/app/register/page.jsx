@@ -30,7 +30,9 @@ const RegisterPage = () => {
       body: JSON.stringify({
         email,
         password,
-        imageId: "nwtbuacukjthvuvhwvki"
+        imageId: "food-ordering/cwmczdlxbyv9yml8uqwv",
+        name: "Ton nom ici...",
+        token: ''
       }),
       headers: {
         'Content-Type': 'application/json'
@@ -44,11 +46,6 @@ const RegisterPage = () => {
       setCreatingUser(false)
     }
 
-
-
-
-    // setCreatingUser(false)
-    // setUserCreated(true)
 
   }
 

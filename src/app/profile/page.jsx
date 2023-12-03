@@ -35,7 +35,21 @@ const ProfilePage = () => {
   }, [status, session])
 
   if (status === 'loading') {
-    return 'Chargement en cours...'
+    return <div 
+        className="
+          h-screen w-full
+          text-3xl
+        "
+        >
+          <div 
+            className="
+              text-orange-800
+              font-bold
+              top-1/3 left-1/2 absolute transform -translate-x-1/2"
+            >
+            Chargement en cours...
+          </div>
+        </div>
   }
 
   if (status === 'unauthenticated') {
@@ -82,24 +96,36 @@ const ProfilePage = () => {
 
   
   return (
-    <section className="min-h-[500px]">
+    <section 
+      className="
+        min-h-[500px]
+      ">
       <h1 className="
-        mt-10
+        my-10
         text-center 
-        mb-10 text-5xl text-primary 
+        text-5xl text-primary 
         font-bold font-weight-900 uppercase from-neutral-800">
         Profile
       </h1>
 
       
-      <div className="max-w-xl mx-auto border">
+      <div 
+        className="
+          max-w-[800px] mx-auto  
+          bg-[#4e9b65] 
+          p-20
+          shadow-lg shadow-slate-600
+          bg-gradient-to-r from-green-200 via-green-400 to-purple-700
+          rounded-sm
+          "
+        >
 
 
 
         <div className="flex items-center gap-8 mt-5">
           
           <div>
-            <div className="bg-gray-700 p-2 rounded-lg flex flex-col items-center justify-center ">
+            <div className="bg-gray-700 p-2 rounded-lg flex flex-col items-center justify-center">
 
               { imageId && (
                 <CldImage
@@ -110,6 +136,7 @@ const ProfilePage = () => {
                   alt="mon image"
                   className="rounded-full mb-3"
                 />
+                
               )}
 
               <form>
@@ -144,7 +171,11 @@ const ProfilePage = () => {
               value={userName}
               onChange={(e) => setUserName(e.target.value)}
             />
+
             <input type="email" value={session.data?.user?.email} disabled />
+
+            <input type="text" placeholder="Adresse" />
+
             <button className="m-0 p-0 h-10  whitespace-nowrap" type="submit">Enregister</button>
 
           </form>
