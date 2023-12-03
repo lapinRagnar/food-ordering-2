@@ -2,6 +2,9 @@ import  {Schema, model, models}  from "mongoose"
 import bcrypt from "bcrypt"
 
 const UserSchema = new Schema({
+  name: {type: String},
+  imageId: {type: String},
+  token: {type: String},
   email: {type: String, required: true, unique: true},
   password: {
     type: String, 
@@ -11,7 +14,8 @@ const UserSchema = new Schema({
         throw new Error("Le mot de passe doit contenir au moins 3 caractères")
       }
     }
-  }
+  },
+
 }, {timestamps: true})
 
 UserSchema.pre("save", function(next) {

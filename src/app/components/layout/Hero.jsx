@@ -4,7 +4,7 @@ import Right from "../icons/Right"
 
 const Hero = () => {
   return (
-    <section className="grid grid-rows-2 sm:grid-cols-3 p-5 max-h-[700px] gap-5">
+    <section className="grid grid-rows-2 sm:grid-cols-3 p-5 max-h-[580px] gap-5 ">
       
       <div className="sm:col-span-1 sm:pt-[100px]">
         <h1 className="sm:text-6xl text-5xl font-bold font-weight-900">
@@ -29,13 +29,12 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="sm:col-span-2 w-full  mt-5 ">
+      <div className="sm:col-span-2 w-full h-[532px] relative">
         <Image 
-          className="rounded-lg w-full"
+          className="rounded-sm"
           src={'/pizza1.jpg'}
           alt="pizza"
-          width={"800"}
-          height={"200"}       
+          fill
         />
       </div>
 

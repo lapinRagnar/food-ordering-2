@@ -1,46 +1,10 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 
 # le tuto
 https://www.youtube.com/watch?v=nGoSP3MBV2E&list=PLfe-EbMNSdYrtApoOiy0TkNPOLV-xyF97&index=23&t=284s
 https://github.com/dejwid/food-ordering
 
-# ressources :
+# ressources utilisées dans ce projet :
 ## react-icons
 https://blog.logrocket.com/react-icons-comprehensive-tutorial-examples/
 
@@ -78,3 +42,98 @@ npm install bcrypt
 ```
 npm install @auth/mongodb-adapter mongodb
 ```	
+
+## j'utilise la google oauth, github, et credentials provider
+voir code
+
+
+## pour l'upload des images, on utilise aws console d'amazon
+https://console.cloudinary.com/pm/c-d0f308b3ea64518b5337859122dd43/getting-started
+
+## next cloudinary integration
+https://cloudinary.com/guides/front-end-development/integrating-cloudinary-with-next-js
+
+```
+npm install next-cloudinary
+```	
+
+variable d'environnement : NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME 
+
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
+CLOUDINARY_NAME=
+
+https://www.youtube.com/watch?v=P0NE5eUOod4
+https://cloudinary.com/blog/guest_post/upload-images-with-react-dropzone
+
+## tuto cloudinary et multer
+https://www.youtube.com/watch?v=oUtd_PDnROA
+https://www.youtube.com/watch?v=g-oLU7q__kM
+
+
+### comment gerer l'erreur JWT_SESSION_ERROR
+https://www.answeroverflow.com/m/1096969046227943584
+
+
+
+## un autre documentation
+https://cloudinary.com/documentation/upload_images#code_explorer_upload_multiple_files_using_a_form_signed
+
+## derniere documentation - installation cloudinary
+https://cloudinary.com/documentation/node_integration#installation_and_setup
+
+https://www.youtube.com/watch?v=kK-XtyDuUD4
+
+## tuto Photo Album Next.js Tutorial (with Server Actions, Cloudinary, Shadcn)
+https://www.youtube.com/watch?v=MC6D4vylKTc&t=1236s
+
+
+## site pour trouver des icons
+https://heroicons.com/
+
+
+## react hot toast - pour la notification
+https://react-hot-toast.com/
+
+## react toastify - pour la notification
+https://fkhadra.github.io/react-toastify/
+
+## reac sooner
+https://sonner.emilkowal.ski/
+
+## un autre tuto de next-auth
+https://www.youtube.com/watch?v=MNm1XhDjX1s
+https://github.com/ClarityCoders/NextAuthTutorial-Video
+
+https://www.youtube.com/watch?v=fcySGWgRuu8&t=177s
+
+
+
+## Getting Started
+
+
+First, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+
+
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+

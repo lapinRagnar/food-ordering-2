@@ -4,6 +4,7 @@
 
 * {
   @apply bg-gray-800 m-0 p-0 ;
+  @apply text-gray-400;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -14,15 +15,21 @@ input[type="password"],
 input[type="text"] {
 
   @apply block w-full my-2 rounded-sm;
-  @apply border p-2 border-gray-500 bg-yellow-700;
-
+  @apply border-b p-2 border-green-500 hover:border-gray-500 ;
+  @apply text-zinc-200 font-bold;
 }
+
+input:hover::placeholder {
+  @apply text-xs text-red-300 ;
+}
+
+
 
 input[type="email"]:disabled,
 input[type="password"]:disabled,
 input[type="text"]:disabled {
 
-  @apply bg-red-400 cursor-not-allowed text-gray-700;
+  @apply bg-neutral-700 cursor-not-allowed text-gray-400;
 
 }
 
