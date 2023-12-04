@@ -5,7 +5,7 @@ import { Account, User as AuthUser } from "next-auth"
 
 import { MongoDBAdapter } from "@auth/mongodb-adapter"
 // import clientPromise  from '@/app/libs/mongoConnect'
-import clientPromise  from '@/app/libs/mongoConnect'
+import clientPromise  from '@/libs/mongoConnect'
 import connect from "@/utils/db"
 
 import GitHubProvider from "next-auth/providers/github"
@@ -77,10 +77,6 @@ export const options: NextAuthOptions = {
           throw new Error(err)
         }
         
-
-
-
-
 
         return null
       }
