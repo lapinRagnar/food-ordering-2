@@ -8,7 +8,10 @@ const nextConfig = {
       },
     ],
   },
-  // reactStrictMode: false,
+  reactStrictMode: true,
+  env: {
+    NEXTAUTH_SECRET:"4RCbnt1pBckMCzhzi6s8A0atrBwcOlhLmi4oUDtO5uE=",
+  },
   // webpack5: true,
   // webpack: (config) => {
   //   config.resolve.fallback = {fs: false}

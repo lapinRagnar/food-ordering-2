@@ -1,32 +1,24 @@
 import mongoose from "mongoose";
 import {options} from '../auth/[...nextauth]/Options'
 import { getServerSession } from "next-auth"
-import { User } from "@/app/models/User";
+import { User } from "@/models/User"
 
 
 export async function PUT(req) {
+  
   mongoose.connect(process.env.MONGO_URL)
   const data = await req.json()
 
   const session = await getServerSession(options)
 
-  console.log('la session dans le api/profile pour update', session, {data})
+  console.log('profile pour update - sesssion et data', session, {data})
 
   const email = session.user.email
 
-
-  if ('name' in data) {
-    // update user name et imdageID du clounidary
-    console.log("je passe la");
-    const result = await User.updateOne(
-      {email}, 
-      {name: data.name, 
-        imageId: data.imageId
-      }
-    )
-
-    console.log("la result de l'update", result)
-  }
-
+  console.log("je passe la");
+  const result = await User.updateOne({email}, data)
+  console.log("la result de l'update", result)
+  
+  
   return Response.json(true)
 }

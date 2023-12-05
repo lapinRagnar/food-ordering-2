@@ -18,21 +18,34 @@ const ProfilePage = () => {
 
   console.log("la session dans profile page", session)
 
+  const imageParDefaut = session.data?.user?.imageId
+
+
   const {status} = session
   const { update } = session
 
   const [userName, setUserName] = useState('')
-  const [imageId, setImageId] = useState('gl63bhqwdlkxsb54bzid')
 
+  const [imageId, setImageId] = useState('food-ordering/cwmczdlxbyv9yml8uqwv')
+
+  const [phone, setPhone] = useState('')
+  const [address, setAddress] = useState('')
+  const [city, setCity] = useState('')
+  const [postalCode, setPostalCode] = useState('')
 
 
 
   useEffect(() => {
     if (status === 'authenticated') {
-      console.log("le nom de l'user", session.data?.user?.name)
+
       setUserName(session.data?.user?.name)
+      setImageId(imageParDefaut)
+      setAddress(session.data?.user?.address)
+      setCity(session.data?.user?.city)
+      setPostalCode(session.data?.user?.postalCode)
+      setPhone(session.data?.user?.phone)
     } 
-  }, [status, session])
+  }, [status, session, imageParDefaut])
 
   if (status === 'loading') {
     return <div 
@@ -61,8 +74,6 @@ const ProfilePage = () => {
   const handleProfileInfoUpdate = async (ev) => {
     ev.preventDefault()
 
-
-
     toast('Mise à jour en cours...')
 
     const response = await fetch('/api/profile', {
@@ -72,7 +83,11 @@ const ProfilePage = () => {
       },
       body: JSON.stringify({
         name: userName,
-        imageId: imageId
+        imageId: imageId,
+        address: address,
+        city: city,
+        postalCode: postalCode,
+        phone: phone
       })
     })
 
@@ -98,7 +113,7 @@ const ProfilePage = () => {
   return (
     <section 
       className="
-        min-h-[500px]
+        min-h-[550px]
       ">
       <h1 className="
         my-10
@@ -113,16 +128,14 @@ const ProfilePage = () => {
         className="
           max-w-[800px] mx-auto  
           bg-[#4e9b65] 
-          p-20
+          p-2
           shadow-lg shadow-slate-600
           bg-gradient-to-r from-green-200 via-green-400 to-purple-700
           rounded-sm
-          "
-        >
+        "
+      >
 
-
-
-        <div className="flex items-center gap-8 mt-5">
+        <div className="flex gap-8 mt-2 p-10 rounded-sm">
           
           <div>
             <div className="bg-gray-700 p-2 rounded-lg flex flex-col items-center justify-center">
@@ -174,7 +187,37 @@ const ProfilePage = () => {
 
             <input type="email" value={session.data?.user?.email} disabled />
 
-            <input type="text" placeholder="Adresse" />
+            <input 
+              type="text" 
+              placeholder="Adresse" 
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+            />
+
+            <div className="flex gap-6">
+              <input 
+                type="text" 
+                placeholder="Ville" 
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+              />
+
+              <input 
+                type="text" 
+                placeholder="Code postal" 
+                value={postalCode}
+                onChange={(e) => setPostalCode(e.target.value)}
+              />
+
+            </div>
+
+            <input 
+              type="tel" 
+              placeholder="Téléphone" 
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+            />
+
 
             <button className="m-0 p-0 h-10  whitespace-nowrap" type="submit">Enregister</button>
 
@@ -182,7 +225,6 @@ const ProfilePage = () => {
         </div>
       
       </div>
-
 
     </section>
   )

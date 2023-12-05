@@ -19,9 +19,12 @@ import { useEffect, } from "react"
 const Header = () => {
   
   const router = useRouter()
+
+  
   
   const { data: session, status } = useSession()
   console.log("la session dans la navbar", session)
+  console.log("le status dans la navbar", status)
   
   useEffect(() => {
     router.refresh()
