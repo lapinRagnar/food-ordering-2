@@ -85,8 +85,10 @@ export const options: NextAuthOptions = {
       const user = await User.findOne({email: session.user.email})
       console.log('user dans session', user)
       console.log("imageId dans session", user?.imageId)
+      console.log("name dans session", user?.name)
       
       session.user.imageId = user?.imageId
+      session.user.name = user?.name
 
 
       return session

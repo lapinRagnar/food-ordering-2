@@ -33,7 +33,7 @@ const ProfilePage = () => {
 
   useEffect(() => {
     if (status === 'authenticated') {
-      console.log("le nom de l'user", session.data?.user?.name)
+
       setUserName(session.data?.user?.name)
       setImageId(imageParDefaut)
     } 
