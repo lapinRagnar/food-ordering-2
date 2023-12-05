@@ -20,10 +20,7 @@ export const metadata = {
 
 export default async function RootLayout({ children}) {
 
-  const session = await getServerSession(options)
-
-
-    
+  const session = await getServerSession(options)    
   console.log("la session dans RootLayout = ", session)
 
 

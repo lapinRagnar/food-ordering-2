@@ -31,7 +31,7 @@ const RegisterPage = () => {
         email,
         password,
         imageId: "food-ordering/cwmczdlxbyv9yml8uqwv",
-        name: "Ton nom ici...",
+        name: "",
         token: ''
       }),
       headers: {

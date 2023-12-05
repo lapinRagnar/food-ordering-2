@@ -1,4 +1,7 @@
 
+import { options } from './api/auth/[...nextauth]/Options'
+import { getServerSession } from 'next-auth'
+
 import Hero from "./components/layout/Hero.jsx"
 import HomeMenu from "./components/layout/HomeMenu.jsx"
 import SectionHeaders from "./components/layout/SectionHeaders.jsx"
@@ -6,7 +9,14 @@ import SectionHeaders from "./components/layout/SectionHeaders.jsx"
 import { GiRotaryPhone } from "react-icons/gi"
 
 
-export default function Home() {
+
+
+export default async function Home() {
+
+
+  const session = await getServerSession(options)    
+  console.log("la session dans Home = ", session)
+
 
 
   return (

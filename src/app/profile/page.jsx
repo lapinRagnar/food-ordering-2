@@ -17,13 +17,17 @@ const ProfilePage = () => {
   const session = useSession()
 
   console.log("la session dans profile page", session)
+  console.log("la session dans profile page", session.data?.user?.imageId)
+
+  const imageParDefaut = session.data?.user?.imageId
+
 
   const {status} = session
   const { update } = session
 
   const [userName, setUserName] = useState('')
-  const [imageId, setImageId] = useState('food-ordering/cwmczdlxbyv9yml8uqwv')
 
+  const [imageId, setImageId] = useState('food-ordering/cwmczdlxbyv9yml8uqwv')
 
 
 
@@ -31,8 +35,9 @@ const ProfilePage = () => {
     if (status === 'authenticated') {
       console.log("le nom de l'user", session.data?.user?.name)
       setUserName(session.data?.user?.name)
+      setImageId(imageParDefaut)
     } 
-  }, [status, session])
+  }, [status, session, imageParDefaut])
 
   if (status === 'loading') {
     return <div 
@@ -60,8 +65,6 @@ const ProfilePage = () => {
 
   const handleProfileInfoUpdate = async (ev) => {
     ev.preventDefault()
-
-
 
     toast('Mise à jour en cours...')
 
@@ -98,7 +101,7 @@ const ProfilePage = () => {
   return (
     <section 
       className="
-        min-h-[500px]
+        min-h-[550px]
       ">
       <h1 className="
         my-10
@@ -113,16 +116,16 @@ const ProfilePage = () => {
         className="
           max-w-[800px] mx-auto  
           bg-[#4e9b65] 
-          p-20
+          p-2
           shadow-lg shadow-slate-600
           bg-gradient-to-r from-green-200 via-green-400 to-purple-700
           rounded-sm
-          "
-        >
+        "
+      >
 
 
 
-        <div className="flex items-center gap-8 mt-5">
+        <div className="flex items-center gap-8 mt-2 p-10 rounded-sm">
           
           <div>
             <div className="bg-gray-700 p-2 rounded-lg flex flex-col items-center justify-center">

@@ -1,7 +1,6 @@
 import { User } from '@/models/User'
 import type {NextAuthOptions} from 'next-auth'
 
-import { Account, User as AuthUser } from "next-auth"
 
 import { MongoDBAdapter } from "@auth/mongodb-adapter"
 // import clientPromise  from '@/app/libs/mongoConnect'
@@ -12,7 +11,6 @@ import GitHubProvider from "next-auth/providers/github"
 import GoogleProvider from "next-auth/providers/google"
 
 import CredentialsProvider from "next-auth/providers/credentials"
-import mongoose from 'mongoose'
 import bcrypt from 'bcrypt'
 
 
@@ -80,6 +78,19 @@ export const options: NextAuthOptions = {
 
   callbacks: {
 
+    session: async ({session}: any) => {
+
+      console.log("la session dans auth [next auth] options", session)
+      await connect()
+      const user = await User.findOne({email: session.user.email})
+      console.log('user dans session', user)
+      console.log("imageId dans session", user?.imageId)
+      
+      session.user.imageId = user?.imageId
+
+
+      return session
+    }
     
   },
 /*   pages: {

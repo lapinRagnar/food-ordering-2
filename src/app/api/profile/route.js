@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import {options} from '../auth/[...nextauth]/Options'
 import { getServerSession } from "next-auth"
-import { User } from "@/app/models/User";
+import { User } from "@/models/User"
 
 
 export async function PUT(req) {
