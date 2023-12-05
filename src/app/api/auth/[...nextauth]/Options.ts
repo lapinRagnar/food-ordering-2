@@ -89,6 +89,10 @@ export const options: NextAuthOptions = {
       
       session.user.imageId = user?.imageId
       session.user.name = user?.name
+      session.user.address = user?.address
+      session.user.city = user?.city
+      session.user.postalCode = user?.postalCode
+      session.user.phone = user?.phone
 
 
       return session

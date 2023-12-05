@@ -32,7 +32,11 @@ const RegisterPage = () => {
         password,
         imageId: "food-ordering/cwmczdlxbyv9yml8uqwv",
         name: "",
-        token: ''
+        token: '',
+        address: '',
+        city: '',
+        postalCode: '',
+        phone: '',
       }),
       headers: {
         'Content-Type': 'application/json'

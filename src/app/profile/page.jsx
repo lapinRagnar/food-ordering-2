@@ -17,7 +17,6 @@ const ProfilePage = () => {
   const session = useSession()
 
   console.log("la session dans profile page", session)
-  console.log("la session dans profile page", session.data?.user?.imageId)
 
   const imageParDefaut = session.data?.user?.imageId
 
@@ -29,6 +28,11 @@ const ProfilePage = () => {
 
   const [imageId, setImageId] = useState('food-ordering/cwmczdlxbyv9yml8uqwv')
 
+  const [phone, setPhone] = useState('')
+  const [address, setAddress] = useState('')
+  const [city, setCity] = useState('')
+  const [postalCode, setPostalCode] = useState('')
+
 
 
   useEffect(() => {
@@ -36,6 +40,10 @@ const ProfilePage = () => {
 
       setUserName(session.data?.user?.name)
       setImageId(imageParDefaut)
+      setAddress(session.data?.user?.address)
+      setCity(session.data?.user?.city)
+      setPostalCode(session.data?.user?.postalCode)
+      setPhone(session.data?.user?.phone)
     } 
   }, [status, session, imageParDefaut])
 
@@ -75,7 +83,11 @@ const ProfilePage = () => {
       },
       body: JSON.stringify({
         name: userName,
-        imageId: imageId
+        imageId: imageId,
+        address: address,
+        city: city,
+        postalCode: postalCode,
+        phone: phone
       })
     })
 
@@ -123,9 +135,7 @@ const ProfilePage = () => {
         "
       >
 
-
-
-        <div className="flex items-center gap-8 mt-2 p-10 rounded-sm">
+        <div className="flex gap-8 mt-2 p-10 rounded-sm">
           
           <div>
             <div className="bg-gray-700 p-2 rounded-lg flex flex-col items-center justify-center">
@@ -177,7 +187,37 @@ const ProfilePage = () => {
 
             <input type="email" value={session.data?.user?.email} disabled />
 
-            <input type="text" placeholder="Adresse" />
+            <input 
+              type="text" 
+              placeholder="Adresse" 
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+            />
+
+            <div className="flex gap-6">
+              <input 
+                type="text" 
+                placeholder="Ville" 
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+              />
+
+              <input 
+                type="text" 
+                placeholder="Code postal" 
+                value={postalCode}
+                onChange={(e) => setPostalCode(e.target.value)}
+              />
+
+            </div>
+
+            <input 
+              type="tel" 
+              placeholder="Téléphone" 
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+            />
+
 
             <button className="m-0 p-0 h-10  whitespace-nowrap" type="submit">Enregister</button>
 
@@ -185,7 +225,6 @@ const ProfilePage = () => {
         </div>
       
       </div>
-
 
     </section>
   )
