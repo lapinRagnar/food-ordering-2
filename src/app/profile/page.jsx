@@ -22,7 +22,7 @@ const ProfilePage = () => {
   const { update } = session
 
   const [userName, setUserName] = useState('')
-  const [imageId, setImageId] = useState('gl63bhqwdlkxsb54bzid')
+  const [imageId, setImageId] = useState('food-ordering/cwmczdlxbyv9yml8uqwv')
 
 
 
