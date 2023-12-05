@@ -49,3 +49,12 @@ button[type="submit"], .submit {
   @apply border-0  text-gray-300;
   
 }
+
+.tabs > *{
+  @apply bg-gray-500 text-gray-800 rounded-full mt-5 p-2;
+}
+
+.tabs > *.active{
+  @apply bg-primary text-green-500 rounded-full mt-5 p-2;
+}
+

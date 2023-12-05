@@ -10,6 +10,9 @@ import { CldImage } from 'next-cloudinary'
 import InfoBox from "../components/layout/InfoBox"
 import SuccessBox from "../components/layout/SuccessBox"
 import {toast} from "sonner"
+import Link from "next/link"
+
+import UserTabs from '@/app/components/layout/UserTabs'
 
 const ProfilePage = () => {
   
@@ -33,6 +36,7 @@ const ProfilePage = () => {
   const [city, setCity] = useState('')
   const [postalCode, setPostalCode] = useState('')
 
+  const [admin, setAdmiin] = useState(false)
 
 
   useEffect(() => {
@@ -44,6 +48,7 @@ const ProfilePage = () => {
       setCity(session.data?.user?.city)
       setPostalCode(session.data?.user?.postalCode)
       setPhone(session.data?.user?.phone)
+      setAdmiin(session.data?.user?.admin)
     } 
   }, [status, session, imageParDefaut])
 
@@ -87,7 +92,8 @@ const ProfilePage = () => {
         address: address,
         city: city,
         postalCode: postalCode,
-        phone: phone
+        phone: phone,
+        admin: admin
       })
     })
 
@@ -113,10 +119,16 @@ const ProfilePage = () => {
   return (
     <section 
       className="
-        min-h-[550px]
+        min-h-[650px]
       ">
+
+      <UserTabs 
+        admin={admin}
+      />
+
+
       <h1 className="
-        my-10
+        my-4
         text-center 
         text-5xl text-primary 
         font-bold font-weight-900 uppercase from-neutral-800">

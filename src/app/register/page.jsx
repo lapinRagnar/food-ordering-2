@@ -37,6 +37,7 @@ const RegisterPage = () => {
         city: '',
         postalCode: '',
         phone: '',
+        admin: false
       }),
       headers: {
         'Content-Type': 'application/json'
