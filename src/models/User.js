@@ -15,11 +15,11 @@ const UserSchema = new Schema({
       }
     }
   },
-  address: {type: String},
-  city: {type: String},
-  postalCode: {type: String},
-  phone: {type: String},
-  admin: {type: Boolean, default: false},
+  // address: {type: String},
+  // city: {type: String},
+  // postalCode: {type: String},
+  // phone: {type: String},
+  // admin: {type: Boolean, default: false},
 
 }, {timestamps: true})
 

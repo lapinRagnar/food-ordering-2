@@ -21,11 +21,11 @@ const ProfilePage = () => {
 
   console.log("la session dans profile page", session)
 
+  
   const imageParDefaut = session.data?.user?.imageId
 
-
   const {status} = session
-  const { update } = session
+  // const { update } = session
 
   const [userName, setUserName] = useState('')
 
@@ -36,19 +36,29 @@ const ProfilePage = () => {
   const [city, setCity] = useState('')
   const [postalCode, setPostalCode] = useState('')
 
-  const [admin, setAdmiin] = useState(false)
+  const [admin, setAdmin] = useState(false)
 
 
   useEffect(() => {
     if (status === 'authenticated') {
 
-      setUserName(session.data?.user?.name)
-      setImageId(imageParDefaut)
-      setAddress(session.data?.user?.address)
-      setCity(session.data?.user?.city)
-      setPostalCode(session.data?.user?.postalCode)
-      setPhone(session.data?.user?.phone)
-      setAdmiin(session.data?.user?.admin)
+      fetch('/api/profile')
+        .then(response => {
+
+          response.json().then(data => {
+            console.log("data dans le fetch", data)
+            setUserName(data?.name)
+            setImageId(data?.imageId)
+            setPhone(data?.phone)
+            setAddress(data?.address)
+            setCity(data?.city)
+            setPostalCode(data?.postalCode)
+            setAdmin(data?.admin)
+
+          })
+        })
+
+
     } 
   }, [status, session, imageParDefaut])
 
