@@ -87,6 +87,7 @@ const ProfilePage = () => {
   // const userImage = session.data?.user?.image
 
   const handleProfileInfoUpdate = async (ev) => {
+    
     ev.preventDefault()
 
     toast('Mise à jour en cours...')
