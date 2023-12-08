@@ -13,6 +13,7 @@ import {toast} from "sonner"
 import Link from "next/link"
 
 import UserTabs from '@/app/components/layout/UserTabs'
+import EditableImage from "../components/layout/EditableImage"
 
 const ProfilePage = () => {
   
@@ -118,13 +119,14 @@ const ProfilePage = () => {
   }
 
 
-  const uploadCloudinary = (result) => {
+/*   const uploadCloudinary = (result) => {
+    
     toast.success('Téléchargement...')
 
     setImageId(result.info.public_id)
 
     toast.success('teléchargement terminé!')
-  }
+  } */
 
   
   return (
@@ -161,7 +163,7 @@ const ProfilePage = () => {
         <div className="flex gap-8 mt-2 p-10 rounded-sm">
           
           <div>
-            <div className="bg-gray-700 p-2 rounded-lg flex flex-col items-center justify-center">
+            {/* <div className="bg-gray-700 p-2 rounded-lg flex flex-col items-center justify-center">
 
               { imageId && (
                 <CldImage
@@ -193,7 +195,10 @@ const ProfilePage = () => {
                   </CldUploadButton>
 
               </form>
-            </div>
+            </div> */}
+
+            <EditableImage imageId={imageId} setImageId={setImageId}/>
+            
           </div>
 
           <form 

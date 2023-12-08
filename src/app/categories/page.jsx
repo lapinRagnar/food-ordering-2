@@ -97,7 +97,8 @@ const Categories = () => {
   return (
 
     <section 
-      className="min-h-[650px]">
+      className="min-h-[650px]"
+    >
       
       <UserTabs 
         admin={true}      
@@ -123,7 +124,7 @@ const Categories = () => {
         "
       >
 
-        <form className="p-5 bg-green-900" onSubmit={handleCategorySubmit}>
+        <form className="px-10 pb-10" onSubmit={handleCategorySubmit}>
           <div className="flex gap-4 justify-center items-center">
             <div className="grow">
               <input 
@@ -143,9 +144,10 @@ const Categories = () => {
 
         </form>
 
-        <div className="p-5 bg-slate-100">
+        <div className="w-full px-10 pb-2">
           
-          <h2 className="">Editer les catégories</h2>
+          <h2>Editer les catégories</h2>
+
           {categories.length > 0 && categories.map(c => (
             <button
               onClick={() => {
@@ -153,11 +155,11 @@ const Categories = () => {
                 setCategoryName(c.name)  
               }} 
               key={c.name}
-              className="bg-amber-900 p-1 rounded-lg cursor-pointer m-1"
+              className="mb-2 w-full"
             >
-              <span>
-                {c.name} 
-              </span>
+              
+              {c.name} 
+              
             </button>
           ))}
 

@@ -29,7 +29,7 @@ const UserTabs = ({admin}) => {
 
           <Link 
             href={'/menu-items'}
-            className={path==='/menu-items' ? 'active' : ''} 
+            className={path.includes('/menu-items') ? 'active' : ''} 
           >
             Listes de Menu
           </Link>

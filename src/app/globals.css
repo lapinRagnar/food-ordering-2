@@ -38,9 +38,11 @@ button:disabled, button[disabled], button[type="submit"][disabled], .submit[disa
   @apply bg-red-400 cursor-not-allowed text-gray-600;
 }
 
-button {
-  @apply w-full my-10 text-gray-700 font-semibold rounded-lg ;
-  @apply border-gray-100 px-2 pt-2 flex items-center justify-center;
+button, .button {
+  @apply  flex p-3 text-gray-700 font-semibold rounded-sm ;
+  @apply border-gray-100;
+  @apply bg-yellow-600 hover:bg-yellow-600;
+  @apply hover:text-gray-500;
   @apply transition-all ease-in-out duration-700;
 }
 
