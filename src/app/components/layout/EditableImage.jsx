@@ -41,7 +41,7 @@ const EditableImage = ({imageId, setImageId}) => {
       
           <CldUploadButton
           className="
-            m-0 p-0 text-gray-200 
+            m-0 p-0 text-gray-400 
             hover:text-green-500 hover:text-lg 
             whitespace-nowrap
             bg-transparent
@@ -51,7 +51,9 @@ const EditableImage = ({imageId, setImageId}) => {
             onUpload={uploadCloudinary}
 
           >
-            Modifier
+            { !imageId && ("Ajouter Image")}
+            { imageId && ("Modifier Image")}
+            
           </CldUploadButton>
 
       </form>

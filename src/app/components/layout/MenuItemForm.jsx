@@ -11,18 +11,19 @@ const MenuItemForm = ({onSubmit, menuItem}) => {
   const [description, setDescription] = useState(menuItem?.description || '')
 
   const [sizes, setSizes] = useState([])
+  const [extraIngredientPrices, setExtraIngredientPrices] = useState([])
 
   return (
     <div>
 
       <form 
         className="p-5" 
-        onSubmit={e =>onSubmit(e, {imageId, name, basePrice, description})}
+        onSubmit={e =>onSubmit(e, {imageId, name, basePrice, description, sizes, extraIngredientPrices})}
       >
 
         <div className="flex gap-4 justify-center items-center">
           
-          <div className='min-w-[150px] max-w-[200px] bg-yellow-200 grow'>
+          <div className='min-w-[150px] max-w-[200px] grow'>
             <EditableImage imageId={imageId} setImageId={setImageId}/>
           </div>
 
@@ -53,6 +54,13 @@ const MenuItemForm = ({onSubmit, menuItem}) => {
               addLabel="Ajout taille (Small, Medium, Large) et extra prix"
               props={sizes} 
               setProps={setSizes} 
+            />
+
+            <MenuItemPriceProps 
+              name="Extra Ingredient" 
+              addLabel="Ajout taille extra ingredient"
+              props={extraIngredientPrices} 
+              setProps={setExtraIngredientPrices} 
             />
 
 

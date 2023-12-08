@@ -84,7 +84,7 @@ const NewMenuItemPage = () => {
   return (
     
     <section 
-    className="min-h-[650px]"
+    className="min-h-[650px] mb-10"
     >
 
       <UserTabs 
@@ -111,7 +111,7 @@ const NewMenuItemPage = () => {
           />
 
           <div className="bg-transparent ">
-            Afficer tous les menus
+            Afficher tous les menus
 
           </div>
 
@@ -135,10 +135,6 @@ const NewMenuItemPage = () => {
           menuItem={null}
           onSubmit={handleFormSubmit}
         />
-
-        <div>
-          salut
-        </div>
 
 
       </div>

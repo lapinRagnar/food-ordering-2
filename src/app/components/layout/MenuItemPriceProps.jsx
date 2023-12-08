@@ -31,7 +31,7 @@ const MenuItemPriceProps = ({name, addLabel, props, setProps}) => {
 
       <div>
 
-        <div className='text-xl border-b-1'> {name} </div>
+        <div className='text-bold border-b mt-10'> {name} </div>
 
         {props.length > 0 && props.map((size, index) => (
           <div 
