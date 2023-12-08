@@ -10,6 +10,10 @@ import { CldImage } from 'next-cloudinary'
 import InfoBox from "../components/layout/InfoBox"
 import SuccessBox from "../components/layout/SuccessBox"
 import {toast} from "sonner"
+import Link from "next/link"
+
+import UserTabs from '@/app/components/layout/UserTabs'
+import EditableImage from "../components/layout/EditableImage"
 
 const ProfilePage = () => {
   
@@ -18,11 +22,11 @@ const ProfilePage = () => {
 
   console.log("la session dans profile page", session)
 
+  
   const imageParDefaut = session.data?.user?.imageId
 
-
   const {status} = session
-  const { update } = session
+  // const { update } = session
 
   const [userName, setUserName] = useState('')
 
@@ -33,17 +37,29 @@ const ProfilePage = () => {
   const [city, setCity] = useState('')
   const [postalCode, setPostalCode] = useState('')
 
+  const [admin, setAdmin] = useState(false)
 
 
   useEffect(() => {
     if (status === 'authenticated') {
 
-      setUserName(session.data?.user?.name)
-      setImageId(imageParDefaut)
-      setAddress(session.data?.user?.address)
-      setCity(session.data?.user?.city)
-      setPostalCode(session.data?.user?.postalCode)
-      setPhone(session.data?.user?.phone)
+      fetch('/api/profile')
+        .then(response => {
+
+          response.json().then(data => {
+            console.log("data dans le fetch", data)
+            setUserName(data?.name)
+            setImageId(data?.imageId)
+            setPhone(data?.phone)
+            setAddress(data?.address)
+            setCity(data?.city)
+            setPostalCode(data?.postalCode)
+            setAdmin(data?.admin)
+
+          })
+        })
+
+
     } 
   }, [status, session, imageParDefaut])
 
@@ -72,6 +88,7 @@ const ProfilePage = () => {
   // const userImage = session.data?.user?.image
 
   const handleProfileInfoUpdate = async (ev) => {
+    
     ev.preventDefault()
 
     toast('Mise à jour en cours...')
@@ -87,7 +104,8 @@ const ProfilePage = () => {
         address: address,
         city: city,
         postalCode: postalCode,
-        phone: phone
+        phone: phone,
+        admin: admin
       })
     })
 
@@ -101,22 +119,29 @@ const ProfilePage = () => {
   }
 
 
-  const uploadCloudinary = (result) => {
+/*   const uploadCloudinary = (result) => {
+    
     toast.success('Téléchargement...')
 
     setImageId(result.info.public_id)
 
     toast.success('teléchargement terminé!')
-  }
+  } */
 
   
   return (
     <section 
       className="
-        min-h-[550px]
+        min-h-[650px]
       ">
+
+      <UserTabs 
+        admin={admin}
+      />
+
+
       <h1 className="
-        my-10
+        my-4
         text-center 
         text-5xl text-primary 
         font-bold font-weight-900 uppercase from-neutral-800">
@@ -138,7 +163,7 @@ const ProfilePage = () => {
         <div className="flex gap-8 mt-2 p-10 rounded-sm">
           
           <div>
-            <div className="bg-gray-700 p-2 rounded-lg flex flex-col items-center justify-center">
+            {/* <div className="bg-gray-700 p-2 rounded-lg flex flex-col items-center justify-center">
 
               { imageId && (
                 <CldImage
@@ -170,7 +195,10 @@ const ProfilePage = () => {
                   </CldUploadButton>
 
               </form>
-            </div>
+            </div> */}
+
+            <EditableImage imageId={imageId} setImageId={setImageId}/>
+            
           </div>
 
           <form 
