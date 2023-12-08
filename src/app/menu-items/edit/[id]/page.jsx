@@ -1,9 +1,10 @@
 "use client"
 
 import { useProfile } from "@/app/components/UseProfile.js"
-import EditableImage from "@/app/components/layout/EditableImage"
 import UserTabs from "@/app/components/layout/UserTabs"
 import { toast } from 'sonner'
+
+import MenuItemForm from '@/app/components/layout/MenuItemForm'
 
 import { useEffect, useState, } from "react"
 import Link from "next/link"
@@ -16,10 +17,12 @@ const EditMenuItemPage = () => {
   const {data: profileData, loading: profileLoading} = useProfile()
 
 
-  const [imageId, setImageId] = useState('')
-  const [name, setName] = useState('')
-  const [basePrice, setBasePrice] = useState(0)
-  const [description, setDescription] = useState('')
+  // const [imageId, setImageId] = useState('')
+  // const [name, setName] = useState('')
+  // const [basePrice, setBasePrice] = useState(0)
+  // const [description, setDescription] = useState('')
+
+  const [menuItem, setMenuItem] = useState(null)
 
   const [redirectToItems, setRedirectToItems] = useState(false)
 
@@ -34,10 +37,12 @@ const EditMenuItemPage = () => {
         const item = items.find(i => i._id === id)
         console.log('item', item);
         
-        setImageId(item.imageId)
-        setName(item.name)
-        setBasePrice(item.basePrice)
-        setDescription(item.description)
+        // setImageId(item.imageId)
+        // setName(item.name)
+        // setBasePrice(item.basePrice)
+        // setDescription(item.description)
+
+        setMenuItem(item)
       })
 
     })
@@ -45,17 +50,11 @@ const EditMenuItemPage = () => {
   }, [id])
 
 
-  const handleFormSubmit = async (e) => {
+  const handleFormSubmit = async (e, data) => {
 
     e.preventDefault()
 
-    const data = {
-      imageId,
-      name,
-      basePrice,
-      description,
-      _id: id
-    } 
+    data = {...data, _id: id} 
 
     toast(' Modification en cour...')
 
@@ -154,39 +153,10 @@ const EditMenuItemPage = () => {
         "
       >
 
-        <form className="p-5 bg-green-900" onSubmit={handleFormSubmit}>
-          <div className="flex gap-4 justify-center items-center">
-            <div className='min-w-[150px] max-w-[200px] bg-yellow-200 grow'>
-              <EditableImage imageId={imageId} setImageId={setImageId}/>
-            </div>
-            <div className="grow">
-              <input
-                value={name}
-                onChange={(e) => setName(e.target.value)} 
-                type="text" 
-                placeholder="Nom menu"
-              />
-              <input
-                value={description}
-                onChange={(e) => setDescription(e.target.value)} 
-                type="text" 
-                placeholder="Description"
-              />
-              <input
-                value={basePrice}
-                onChange={(e) => setBasePrice(e.target.value)} 
-                type="text" 
-                placeholder="Prix de base"
-              />
-              <div className="w-[150px]">
-                <button type="submit">Enregistrer</button>
-              </div>
-
-            </div>
-
-          </div>
-
-        </form>
+        <MenuItemForm 
+          menuItem={menuItem}
+          onSubmit={handleFormSubmit}
+        />
 
         <div>
           salut
