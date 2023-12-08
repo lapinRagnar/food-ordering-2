@@ -10,8 +10,8 @@ const MenuItemForm = ({onSubmit, menuItem}) => {
   const [basePrice, setBasePrice] = useState(menuItem?.basePrice || '')
   const [description, setDescription] = useState(menuItem?.description || '')
 
-  const [sizes, setSizes] = useState([])
-  const [extraIngredientPrices, setExtraIngredientPrices] = useState([])
+  const [sizes, setSizes] = useState(menuItem?.sizes || [])
+  const [extraIngredientPrices, setExtraIngredientPrices] = useState(menuItem?.extraIngredientPrices || [])
 
   return (
     <div>
@@ -28,18 +28,24 @@ const MenuItemForm = ({onSubmit, menuItem}) => {
           </div>
 
           <div className="grow">
+            
+            <div className="border-b grow-0 w-[110px]">Nom du menu</div>
             <input
               value={name}
               onChange={(e) => setName(e.target.value)} 
               type="text" 
               placeholder="Nom menu"
             />
+
+            <div className="border-b grow-0 w-[110px]">Description</div>
             <input
               value={description}
               onChange={(e) => setDescription(e.target.value)} 
               type="text" 
               placeholder="Description"
             />
+            
+            <div className="border-b grow-0 w-[110px]">Prix de base</div>
             <input
               value={basePrice}
               onChange={(e) => setBasePrice(e.target.value)} 

@@ -109,7 +109,7 @@ const EditMenuItemPage = () => {
   return (
     
     <section 
-    className="min-h-[650px]"
+    className="min-h-[600px] mb-10"
     >
 
       <UserTabs 
