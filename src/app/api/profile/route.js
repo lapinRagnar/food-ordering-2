@@ -21,7 +21,6 @@ export async function PUT(req) {
 
   const result = await User.updateOne({email}, {name, imageId})
 
-  console.log("la result de l'update", result)
 
   const result2 = await UserInfo.findOneAndUpdate({email}, otherUserInfo, {upsert: true})
   

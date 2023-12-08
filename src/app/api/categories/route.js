@@ -27,3 +27,25 @@ export async function GET() {
     await Category.find()
   )
 }
+
+export async function DELETE(req) {
+  mongoose.connect(process.env.MONGO_URL)
+  
+  console.log("req dans DELETE API", req)
+  
+  const id = req.body._id
+  console.log("id dans delete", id)
+
+
+  // console.log("url dans DELETE API", url)
+
+  // const search = url.searchParams.get('_id')
+  // console.log("search dans DELETE API", search)
+
+  // const _id = url.searchParams.get('_id')
+  // console.log("_id dans DELETE API", _id)
+
+  // const res = await Category.deleteOne({_id})
+  // console.log("res du delete", res)
+  return Response.json(true)
+}

@@ -1,6 +1,7 @@
 
 "use client"
 
+
 import { useEffect, useState,  } from "react"
 import UserTabs from "../components/layout/UserTabs"
 import { useProfile } from "../components/UseProfile"
@@ -67,6 +68,27 @@ const Categories = () => {
     } else {
       toast.error("Une erreur est survenue, aieuuuuh!")
     }
+
+  }
+
+  const handleDeleteClick = async (_id) => {
+    console.log("_id", _id)
+
+    toast('Suppression en cours...')
+
+    const response = await fetch("/api/categories/"+ _id, {
+      method: "DELETE",
+      body: JSON.stringify({ _id }),
+    })
+
+    if (response.ok) {
+      toast.success("Categorie bien supprimée!")
+      fetchCategories()
+      
+    } else {
+      toast.error("Une erreur est survenue, aieuuuuh!")
+    }
+
 
   }
 
@@ -144,32 +166,47 @@ const Categories = () => {
 
         </form>
 
-        <div className="w-full px-10 pb-2">
+        <div className="px-10 pb-2">
           
           <h2>Editer les catégories</h2>
 
           {categories.length > 0 && categories.map(c => (
-            <button
-              onClick={() => {
-                setEditedCategory(c)
-                setCategoryName(c.name)  
-              }} 
+            <div
+              className="mb-2 bg-gray-500 flex"
               key={c.name}
-              className="mb-2 w-full"
             >
               
-              {c.name} 
-              
-            </button>
-          ))}
+              <div
+                className="bg-purple-500 grow"
 
+              >
+                {c.name} 
+              </div>
+
+              <div className="flex gap-1">
+                <button 
+                  type="button"
+                  onClick={() => {
+                    setEditedCategory(c)
+                    setCategoryName(c.name)  
+                  }} 
+                >
+                  Edit
+                </button>
+                <button 
+                  type="button"
+                  onClick={() => handleDeleteClick(c._id)}
+                >
+                  Delete
+                </button>
+              </div>
+              
+            </div>
+          ))}
 
         </div>
 
-
       </div>
-      
-
 
     </section>
   )

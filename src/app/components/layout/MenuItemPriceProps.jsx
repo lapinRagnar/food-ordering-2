@@ -7,7 +7,7 @@ import { useState } from 'react'
 
 const MenuItemPriceProps = ({name, addLabel, props, setProps}) => {
 
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(true)
 
   const addProp = (ev, index, prop) => {
     setProps(oldProps => {
@@ -39,7 +39,12 @@ const MenuItemPriceProps = ({name, addLabel, props, setProps}) => {
           className='flex items-center justify-between cursor-pointer'
           onClick={() => setIsOpen(!isOpen)}
         >
-          <div className='text-bold border-b mt-10'> {name} </div>
+          
+          <div className='flex gap-2 items-center'>
+            <div className='text-bold border-b mt-10'> {name} </div>
+            <div className='mt-10'>({props?.length})</div>
+          </div>
+          
           <div className='mt-10 p-1'>
             {!isOpen && (<ChevronDown />)}
             {isOpen && (<ChevronUp />)}
@@ -50,46 +55,47 @@ const MenuItemPriceProps = ({name, addLabel, props, setProps}) => {
         <div className={isOpen ?  'block' : 'hidden' }>
 
           {props.length > 0 && props.map((size, index) => (
-            <div 
-              key={size.name}
-              className="flex gap-2 items-end"  
-            >
-              <div className="my-2">
-                <label htmlFor="nom" className='text-sm'>Nom</label>
-                <input 
-                  id="nom"
-                  name="nom"
-                  type="text" 
-                  placeholder="Nom de la taille"
-                  value={size.name}
-                  onChange={(ev) => editProp(ev, index, 'name')}
-                />
-              </div>
-
-              <div className="my-2">
-                <label htmlFor="prix" className='text-sm'>Extra Prix</label>
-                <input 
-                  id="prix"
-                  name="prix"
-                  type="text" 
-                  placeholder="Exta Prix"
-                  value={size.price}
-                  onChange={(ev) => editProp(ev, index, 'price')}
-                />
-              </div>
-              <div>
-                <button 
-                  className="text-red-800 text-3xl" 
-                  type="button"
-                  onClick={() => removeProp(index)}
-                >
-                  <Trash 
-                    className="bg-transparent w-6 h-6 text-red-600"
+              <div 
+                key={size.name}
+                className="flex gap-2 items-end"  
+              >
+                <div className="my-2">
+                  <label htmlFor="nom" className='text-sm'>Nom</label>
+                  <input 
+                    id="nom"
+                    name="nom"
+                    type="text" 
+                    placeholder="Nom de la taille"
+                    value={size.name}
+                    onChange={(ev) => editProp(ev, index, 'name')}
                   />
-                </button>
+                </div>
+
+                <div className="my-2">
+                  <label htmlFor="prix" className='text-sm'>Extra Prix</label>
+                  <input 
+                    id="prix"
+                    name="prix"
+                    type="text" 
+                    placeholder="Exta Prix"
+                    value={size.price}
+                    onChange={(ev) => editProp(ev, index, 'price')}
+                  />
+                </div>
+                <div>
+                  <button 
+                    className="text-red-800 text-3xl" 
+                    type="button"
+                    onClick={() => removeProp(index)}
+                  >
+                    <Trash 
+                      className="bg-transparent w-6 h-6 text-red-600"
+                    />
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
+              ) 
+          )}
 
         </div>
 

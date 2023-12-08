@@ -23,12 +23,9 @@ const Header = () => {
   
   
   const { data: session, status } = useSession()
-  console.log("la session dans la navbar", session)
-  console.log("le status dans la navbar", status)
   
   useEffect(() => {
     router.refresh()
-    console.log('je suis dans le useEffect', session)
   }, [session, router])
 
   // const status = session.status
