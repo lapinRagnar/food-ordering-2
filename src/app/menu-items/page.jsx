@@ -103,22 +103,28 @@ const MenuItemsPage = () => {
 
               { menuItems?.length > 0 && menuItems.map((item) => (
                 <Link
-                  href={`/menu-items/edit/${item.name}`} 
+                  href={`/menu-items/edit/${item._id}`} 
                   key={item._id} 
                   className="
                     mb-2 w-full flex flex-col gap-5
                     bg-gray-700 rounded-sm  
                   "
-                >
-                  <CldImage
-                    width="100"
-                    height="100"
-                    src={item.imageId}
-                    sizes="100vw"
-                    alt="mon image"
-                    className=" mb-3"
-                  />
-                  {item.name} 
+                > 
+                  <div className='flex items-center justify-center'>
+                    <CldImage
+                      width="100"
+                      height="100"
+                      src={item.imageId}
+                      sizes="100vw"
+                      alt="mon image"
+                      className=" mb-3 text-center rounded-sm"
+                    />
+                  </div>
+
+                  <div className="text-center">
+                    {item.name} 
+                  </div>
+
                 </Link>
               ))}
 
