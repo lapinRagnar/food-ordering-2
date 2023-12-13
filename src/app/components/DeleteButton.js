@@ -5,25 +5,34 @@ const DeleteButton = ({label, onDelete}) => {
 
   if (showConfirm) {
     return (
-      <div>
-        <div>Etes-vous sure ?</div>
+      <div 
+        className="flex items-center 
+        justify-center bg-transparent/80 
+        inset-0 h-full 
+        absolute"
         
-        <div className="flex gap-2 mt-5">
-          <button 
-            className="bg-primary"
-            type="button" 
-            onClick={() => onDelete()} 
-          >
-            Oui, Supprimer
-          </button>
-          <button
-            type="button"
-            onClick={() => setShowConfirm(false)}
-          >
-            Annuler
-          </button>
-        </div>
+      >
 
+        <div className="p-10 border-emerald-900 rounded-lg  ">
+          <div>Etes-vous sure ?</div>
+          
+          <div className="flex gap-2 mt-5">
+            <button 
+              className="bg-primary"
+              type="button" 
+              onClick={() => {onDelete(); setShowConfirm(false)}} 
+            >
+              Oui, Supprimer
+            </button>
+            <button
+              type="button"
+              onClick={() => setShowConfirm(false)}
+            >
+              Annuler
+            </button>
+          </div>
+
+        </div>
 
       </div>
     )

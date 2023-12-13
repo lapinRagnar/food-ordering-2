@@ -9,6 +9,7 @@ import { useProfile } from "../components/UseProfile"
 import {toast} from "sonner"
 
 import { useDebouncedCallback } from 'use-debounce'
+import DeleteButton from "../components/DeleteButton"
 
 const Categories = () => {
 
@@ -207,14 +208,13 @@ const Categories = () => {
                     setCategoryName(c.name)  
                   }} 
                 >
-                  Edit
+                  Editer
                 </button>
-                <button 
-                  type="button"
+
+                <DeleteButton 
+                  label={"Effacer"}
                   onClick={() => handleDeleteClick(c._id)}
-                >
-                  Delete
-                </button>
+                />
               </div>
               
             </div>

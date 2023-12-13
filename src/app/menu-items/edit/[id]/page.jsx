@@ -182,7 +182,7 @@ const EditMenuItemPage = () => {
           
           <DeleteButton 
             label="Supprimer ce menu"
-            onDelete={handleDeleteClick}
+            onDelete={() => handleDeleteClick(id)}
           />
         </div>
 
