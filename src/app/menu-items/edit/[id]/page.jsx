@@ -79,6 +79,24 @@ const EditMenuItemPage = () => {
   }
 
 
+  const handleDeleteClick = async () => {
+    toast('Suppression en cours...')
+
+    const response = await fetch('/api/menu-items?_id=' + id, {
+      method: 'DELETE'
+    })
+
+    if (response.ok) {
+      toast.success("Categorie bien supprimée!")
+      setRedirectToItems(true)
+    } else {
+      toast.error("Une erreur est survenue, aieuuuuh!")
+    }
+
+  }
+
+
+
   if (redirectToItems) {
     return redirect('/menu-items')
   }
@@ -109,7 +127,7 @@ const EditMenuItemPage = () => {
   return (
     
     <section 
-    className="min-h-[600px] mb-10"
+    className="min-h-[550px] mb-10"
     >
 
       <UserTabs 
@@ -127,7 +145,7 @@ const EditMenuItemPage = () => {
 
       <div className="flex items-center justify-center mb-3">
         <Link 
-          className="button flex items-center justify-center gap-2"
+          className=" flex items-center justify-center gap-2"
           href="/menu-items"
         > 
 
@@ -136,7 +154,7 @@ const EditMenuItemPage = () => {
           />
 
           <div className="bg-transparent ">
-            Afficer tous les menus
+            Afficer tous les menus  
           </div>
 
         </Link>
@@ -144,7 +162,7 @@ const EditMenuItemPage = () => {
 
       <div 
         className="
-          max-w-[800px] mx-auto  
+          max-w-[1100px] mx-auto  
           bg-[#4e9b65] 
           p-2
           shadow-lg shadow-slate-600
@@ -158,8 +176,10 @@ const EditMenuItemPage = () => {
           onSubmit={handleFormSubmit}
         />
 
-        <div>
-          salut
+        <div className="pb-5 flex items-center justify-center">
+          <button className="bg-transparent text-red-600 hover:bg-red-200 hover:text-red-800" onClick={handleDeleteClick}>
+            Supprimer ce menu
+          </button>
         </div>
 
 

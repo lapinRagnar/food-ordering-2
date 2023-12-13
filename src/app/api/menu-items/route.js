@@ -31,3 +31,22 @@ export async function GET() {
     await MenuItem.find()
   )
 }
+
+export async function DELETE(req) {
+
+  mongoose.connect(process.env.MONGO_URL)
+    
+  const url = new URL(req.url)
+  console.log("id url ", url)
+
+  const _id = url.searchParams.get('_id')
+  console.log('id dans searchParams', _id);
+
+
+  const res = await MenuItem.deleteOne({_id})
+  console.log("res du delete", res)
+  
+  return Response.json(true)
+
+
+}

@@ -102,7 +102,7 @@ const NewMenuItemPage = () => {
 
       <div className="flex items-center justify-center mb-3">
         <Link 
-          className="button flex items-center justify-center gap-2"
+          className="flex items-center justify-center gap-2"
           href="/menu-items"
         > 
 
@@ -122,7 +122,7 @@ const NewMenuItemPage = () => {
 
       <div 
         className="
-          max-w-[800px] mx-auto  
+          max-w-[1000px] mx-auto  
           bg-[#4e9b65] 
           p-2
           shadow-lg shadow-slate-600

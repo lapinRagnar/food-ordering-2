@@ -21,8 +21,8 @@ const EditableImage = ({imageId, setImageId}) => {
 
       { imageId && (
         <CldImage
-          width="100"
-          height="100"
+          width="300"
+          height="300"
           src={imageId}
           sizes="100vw"
           alt="mon image"

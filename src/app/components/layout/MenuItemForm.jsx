@@ -21,15 +21,15 @@ const MenuItemForm = ({onSubmit, menuItem}) => {
         onSubmit={e =>onSubmit(e, {imageId, name, basePrice, description, sizes, extraIngredientPrices})}
       >
 
-        <div className="flex gap-4 justify-center items-center">
+        <div className="flex gap-4 justify-center items-start">
           
-          <div className='min-w-[150px] max-w-[200px] grow'>
+          <div className='min-w-[350px] max-w-[350px] grow'>
             <EditableImage imageId={imageId} setImageId={setImageId}/>
           </div>
 
           <div className="grow">
             
-            <div className="border-b grow-0 w-[110px]">Nom du menu</div>
+            {/* <div className=" grow-0 w-[110px]">Nom du menu</div> */}
             <input
               value={name}
               onChange={(e) => setName(e.target.value)} 
@@ -37,15 +37,15 @@ const MenuItemForm = ({onSubmit, menuItem}) => {
               placeholder="Nom menu"
             />
 
-            <div className="border-b grow-0 w-[110px]">Description</div>
-            <input
+            {/* <div className=" grow-0 w-[110px]">Description</div> */}
+            <textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)} 
               type="text" 
               placeholder="Description"
             />
             
-            <div className="border-b grow-0 w-[110px]">Prix de base</div>
+            {/* <div className="grow-0 w-[110px]">Prix de base</div> */}
             <input
               value={basePrice}
               onChange={(e) => setBasePrice(e.target.value)} 
