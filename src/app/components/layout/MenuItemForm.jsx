@@ -71,10 +71,10 @@ const MenuItemForm = ({onSubmit, menuItem}) => {
 
 
 
-            <div className="w-[150px]">
+            <div className="w-[150px] mt-5">
               <button 
                 type="submit"
-                className='w-full '
+                className='w-full text-xl text-gray-300'
                 >
                  Enregistrer
               </button>

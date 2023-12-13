@@ -12,6 +12,8 @@ import Link from "next/link"
 import Left from "@/app/components/icons/Left"
 import { redirect, useParams } from "next/navigation"
 
+import DeleteButton from "@/app/components/DeleteButton"
+
 const EditMenuItemPage = () => {
 
   const {data: profileData, loading: profileLoading} = useProfile()
@@ -177,9 +179,11 @@ const EditMenuItemPage = () => {
         />
 
         <div className="pb-5 flex items-center justify-center">
-          <button className="bg-transparent text-red-600 hover:bg-red-200 hover:text-red-800" onClick={handleDeleteClick}>
-            Supprimer ce menu
-          </button>
+          
+          <DeleteButton 
+            label="Supprimer ce menu"
+            onDelete={handleDeleteClick}
+          />
         </div>
 
 
