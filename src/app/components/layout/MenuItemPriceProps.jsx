@@ -4,6 +4,7 @@ import ChevronDown from '@/app/components/icons/ChevronDown'
 import ChevronUp from '@/app/components/icons/ChevronUp'
 
 import { useState } from 'react'
+import { useDebouncedCallback } from 'use-debounce'
 
 const MenuItemPriceProps = ({name, addLabel, props, setProps}) => {
 
@@ -15,14 +16,24 @@ const MenuItemPriceProps = ({name, addLabel, props, setProps}) => {
     })
   }
 
-  const editProp = (ev, index, prop) => {
+  const editProp = useDebouncedCallback((ev, index, prop) => {
     const newValue =ev.target.value
     setProps(prevSizes => {
       const newSizes = [...prevSizes]
       newSizes[index][prop] = newValue
       return newSizes
     })
-  }
+  }, 1200)
+
+
+/*   const editProp = (ev, index, prop) => {
+    const newValue =ev.target.value
+    setProps(prevSizes => {
+      const newSizes = [...prevSizes]
+      newSizes[index][prop] = newValue
+      return newSizes
+    })
+  } */
 
   const removeProp = (indexToRemove) => {
     setProps(prev => prev.filter((v, index) => index !== indexToRemove))
@@ -66,7 +77,7 @@ const MenuItemPriceProps = ({name, addLabel, props, setProps}) => {
                     name="nom"
                     type="text" 
                     placeholder="Nom de la taille"
-                    value={size.name}
+                    defaultValue={size.name}
                     onChange={(ev) => editProp(ev, index, 'name')}
                   />
                 </div>
@@ -78,7 +89,7 @@ const MenuItemPriceProps = ({name, addLabel, props, setProps}) => {
                     name="prix"
                     type="text" 
                     placeholder="Exta Prix"
-                    value={size.price}
+                    defaultValue={size.price}
                     onChange={(ev) => editProp(ev, index, 'price')}
                   />
                 </div>

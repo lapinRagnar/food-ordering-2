@@ -31,10 +31,16 @@ export async function GET() {
 export async function DELETE(req) {
   mongoose.connect(process.env.MONGO_URL)
   
-  console.log("req dans DELETE API", req)
+  // console.log("req dans DELETE API", req)
   
-  const id = req.body._id
-  console.log("id dans delete", id)
+  const url = new URL(req.url)
+
+
+  console.log("id url ", url)
+
+  const _id = url.searchParams.get('_id')
+  console.log('id dans searchParams', _id);
+
 
 
   // console.log("url dans DELETE API", url)
@@ -45,7 +51,7 @@ export async function DELETE(req) {
   // const _id = url.searchParams.get('_id')
   // console.log("_id dans DELETE API", _id)
 
-  // const res = await Category.deleteOne({_id})
-  // console.log("res du delete", res)
+  const res = await Category.deleteOne({_id})
+  console.log("res du delete", res)
   return Response.json(true)
 }

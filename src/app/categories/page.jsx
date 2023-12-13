@@ -8,6 +8,8 @@ import { useProfile } from "../components/UseProfile"
 
 import {toast} from "sonner"
 
+import { useDebouncedCallback } from 'use-debounce'
+
 const Categories = () => {
 
   const [categoryName, setCategoryName] = useState('')
@@ -20,13 +22,21 @@ const Categories = () => {
     fetchCategories()
   }, [])
 
-  const fetchCategories = () => {
+/*   const fetchCategories = () => {
     fetch('/api/categories').then(res => {
       res.json().then(categories => {
         setCategories(categories)
       })
     })
-  }
+  } */
+
+  const fetchCategories = useDebouncedCallback(() => {
+    fetch('/api/categories').then(res => {
+      res.json().then(categories => {
+        setCategories(categories)
+      })
+    })
+  }, 800)
 
   const handleCategorySubmit = async (e) => {
 
@@ -76,7 +86,7 @@ const Categories = () => {
 
     toast('Suppression en cours...')
 
-    const response = await fetch("/api/categories/"+ _id, {
+    const response = await fetch("/api/categories?_id="+ _id, {
       method: "DELETE",
       body: JSON.stringify({ _id }),
     })
@@ -119,7 +129,7 @@ const Categories = () => {
   return (
 
     <section 
-      className="min-h-[650px]"
+      className="min-h-[550px]"
     >
       
       <UserTabs 
@@ -157,9 +167,16 @@ const Categories = () => {
                 onChange={(ev) => setCategoryName(ev.target.value)}
               />
             </div>
-            <div>
+            <div className="flex gap-2">
               <button className="p-2" type="submit">
                 { editedCategory ? 'Modifier' : 'Ajouter' }
+              </button>
+              <button
+                type="button" 
+                className="p-2 bg-transparent"
+                onClick={() => {setEditedCategory(null); setCategoryName('')}}
+              >
+                Annuler
               </button>
             </div>
           </div>
@@ -168,17 +185,16 @@ const Categories = () => {
 
         <div className="px-10 pb-2">
           
-          <h2>Editer les catégories</h2>
+          <h1 className="mb-3 text-2xl text-amber-700 font-bold">Editer les catégories</h1>
 
           {categories.length > 0 && categories.map(c => (
             <div
-              className="mb-2 bg-gray-500 flex"
+              className=" flex items-center"
               key={c.name}
             >
               
               <div
-                className="bg-purple-500 grow"
-
+                className="grow pl-2"
               >
                 {c.name} 
               </div>
