@@ -1,7 +1,8 @@
 import MenuItemPriceProps from "@/app/components/layout/MenuItemPriceProps"
 
 import EditableImage from "@/app/components/layout/EditableImage"
-import { useState, } from "react"
+import { useEffect, useState, } from "react"
+import MenuItem from "../menu/MenuItem"
 
 const MenuItemForm = ({onSubmit, menuItem}) => {
 
@@ -13,12 +14,26 @@ const MenuItemForm = ({onSubmit, menuItem}) => {
   const [sizes, setSizes] = useState(menuItem?.sizes || [])
   const [extraIngredientPrices, setExtraIngredientPrices] = useState(menuItem?.extraIngredientPrices || [])
 
+  const [categories, setCategories] = useState([])
+  const [category, setCategory] = useState(MenuItem?.category || '')
+
+  useEffect(() => {
+    fetch('/api/categories').then(res => {
+      res.json().then(categories => {
+        setCategories(categories)
+      })
+    })
+  }, [])
+
+  console.log('categories', categories)
+
+
   return (
     <div>
 
       <form 
         className="p-5" 
-        onSubmit={e =>onSubmit(e, {imageId, name, basePrice, description, sizes, extraIngredientPrices})}
+        onSubmit={e =>onSubmit(e, {imageId, name, basePrice, description, sizes, extraIngredientPrices, category})}
       >
 
         <div className="flex gap-4 justify-center items-start">
@@ -44,6 +59,20 @@ const MenuItemForm = ({onSubmit, menuItem}) => {
               type="text" 
               placeholder="Description"
             />
+
+            <select
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+            >
+              {categories?.length > 0 && categories.map(category => (
+                <option 
+                key={category._id}
+                value={category._id}
+                >
+                  {category.name}
+                </option>
+              ))}
+            </select>
             
             {/* <div className="grow-0 w-[110px]">Prix de base</div> */}
             <input
