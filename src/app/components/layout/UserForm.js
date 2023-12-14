@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import EditableImage from "@/app/components/layout/EditableImage"
+import { useProfile } from "@/app/components/UseProfile"
 
 const UserForm = ({user, onSave}) => {
 
@@ -14,6 +15,9 @@ const UserForm = ({user, onSave}) => {
   const [city, setCity] = useState(user?.city || '')
   const [postalCode, setPostalCode] = useState(user?.postalCode || '')
 
+  const [admin, setAdmin] = useState( user?.admin || false)
+  const {data: loggedInUserData} = useProfile()
+
 
   useEffect(() => {
     setUserName(user?.name || '')
@@ -22,6 +26,7 @@ const UserForm = ({user, onSave}) => {
     setAddress(user?.address || '')
     setCity(user?.city || '')
     setPostalCode(user?.postalCode || '')
+    setAdmin(user?.admin || false)
   }, [user])
 
 
@@ -35,13 +40,14 @@ const UserForm = ({user, onSave}) => {
 
       <form 
         className="grow"
-        onClick={(e) => onSave(e, {
+        onSubmit={(e) => onSave(e, {
           name: userName,
           imageId: imageId,
           address: address,
           city: city,
           postalCode: postalCode,
-          phone: phone
+          phone: phone,
+          admin: admin
         })}
         >
         <input 
@@ -84,6 +90,22 @@ const UserForm = ({user, onSave}) => {
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
         />
+
+        {loggedInUserData?.admin && (
+          
+          <div className="flex items-center gap-2 mt-8">
+            <input 
+              type="checkbox" 
+              id="admin" 
+              name="admin"  
+              value={'1'}
+              checked={admin}
+              onClick={(e) => setAdmin(e.target.checked)}
+            />
+            <label for="admin">Admin</label>
+          </div>
+          
+        )}
 
 
         <button className="m-0 p-3 mt-8 whitespace-nowrap" type="submit">Enregister</button>

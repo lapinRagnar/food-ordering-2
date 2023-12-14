@@ -5,6 +5,8 @@ import UserForm from "@/app/components/layout/UserForm"
 import UserTabs from "@/app/components/layout/UserTabs"
 import { useParams } from "next/navigation"
 import { useEffect, useState } from "react"
+import {toast} from "sonner"
+
 
 const EditUserPage = () => {
   
@@ -24,7 +26,11 @@ const EditUserPage = () => {
   }, [])
 
   const handleSaveButtonClick = (e, data) => {
+    
     e.preventDefault()
+
+    toast('Ajout en cours...')
+
     fetch('/api/profile', {
       method: 'PUT',
       headers: {
@@ -32,6 +38,8 @@ const EditUserPage = () => {
       },
       body: JSON.stringify({...data, _id: id})
     })
+
+    toast.success('Utilisateur mis à jour')
   }
 
 
