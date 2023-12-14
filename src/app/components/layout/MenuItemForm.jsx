@@ -67,7 +67,7 @@ const MenuItemForm = ({onSubmit, menuItem}) => {
               {categories?.length > 0 && categories.map(category => (
                 <option 
                 key={category._id}
-                value={category._id}
+                value={category.name}
                 >
                   {category.name}
                 </option>

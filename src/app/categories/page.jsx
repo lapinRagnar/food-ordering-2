@@ -213,7 +213,7 @@ const Categories = () => {
 
                 <DeleteButton 
                   label={"Effacer"}
-                  onClick={() => handleDeleteClick(c._id)}
+                  onDelete={() => handleDeleteClick(c._id)}
                 />
               </div>
               

@@ -10,6 +10,7 @@
   box-sizing: border-box;
 }
 
+textarea,
 select,
 input[type="email"],
 input[type="tel"],
@@ -17,7 +18,7 @@ input[type="password"],
 input[type="text"] {
 
   @apply block w-full my-2 rounded-sm;
-  @apply border-b p-2 border-green-500 hover:border-gray-500 ;
+  @apply border-b p-2 hover:border-gray-500 ;
   @apply text-zinc-200 font-bold;
 }
 
