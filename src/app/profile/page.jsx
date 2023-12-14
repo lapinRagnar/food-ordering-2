@@ -105,7 +105,7 @@ const ProfilePage = () => {
      
       <div 
         className="
-          max-w-[800px] mx-auto  
+          max-w-[1100px] mx-auto  
           bg-[#4e9b65] 
           p-2
           shadow-lg shadow-slate-600

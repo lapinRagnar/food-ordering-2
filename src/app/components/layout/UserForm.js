@@ -86,7 +86,7 @@ const UserForm = ({user, onSave}) => {
         />
 
 
-        <button className="m-0 p-0 h-10  whitespace-nowrap" type="submit">Enregister</button>
+        <button className="m-0 p-3 mt-8 whitespace-nowrap" type="submit">Enregister</button>
 
       </form>
     </div>
