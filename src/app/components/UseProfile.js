@@ -1,20 +1,21 @@
+'use client'
+
 import { useState, useEffect } from "react"
 
 export const useProfile = () => {
 
 
-  const [data, setData] = useState(true)
+  const [data, setData] = useState(false)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
 
     setLoading(true)
 
-    fetch('/api/profile')
-      .then(response => {
+    fetch('/api/profile').then(response => {
 
         response.json().then(data => {
-          console.log("fetch dans categories", data)
+          console.log("fetch dans useProfile", data)
           setData(data)
           setLoading(false)
         })

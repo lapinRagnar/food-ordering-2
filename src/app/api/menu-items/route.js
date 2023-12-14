@@ -21,7 +21,7 @@ export async function PUT(req) {
 
   const menuItemDoc = await MenuItem.findByIdAndUpdate(_id, data)
 
-  return Response.json(menuItemDoc)
+  return Response.json(true)
 
 }
 

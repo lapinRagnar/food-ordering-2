@@ -5,30 +5,20 @@ import { redirect } from "next/navigation"
 import { useEffect, useState } from "react"
 import {toast} from "sonner"
 import UserTabs from '@/app/components/layout/UserTabs'
-import EditableImage from "../components/layout/EditableImage"
+import UserForm from '@/app/components/layout/UserForm'
+
 
 
 const ProfilePage = () => {
   
+  const [user, setUser] = useState(null)
 
   const session = useSession()
-
   console.log("la session dans profile page", session)
-
-  
-  const imageParDefaut = session.data?.user?.imageId
-
   const {status} = session
   // const { update } = session
 
-  const [userName, setUserName] = useState('')
 
-  const [imageId, setImageId] = useState('food-ordering/cwmczdlxbyv9yml8uqwv')
-
-  const [phone, setPhone] = useState('')
-  const [address, setAddress] = useState('')
-  const [city, setCity] = useState('')
-  const [postalCode, setPostalCode] = useState('')
 
   const [admin, setAdmin] = useState(false)
 
@@ -42,22 +32,14 @@ const ProfilePage = () => {
 
           response.json().then(data => {
             console.log("data dans le fetch", data)
-            setUserName(data?.name)
-            setImageId(data?.imageId)
-            setPhone(data?.phone)
-            setAddress(data?.address)
-            setCity(data?.city)
-            setPostalCode(data?.postalCode)
+            setUser(data)
             setAdmin(data?.admin)
 
           })
         })
     } 
     
-  }, [status, session, imageParDefaut])
-
-
-
+  }, [status, session])
 
 
 
@@ -85,7 +67,7 @@ const ProfilePage = () => {
 
   // const userImage = session.data?.user?.image
 
-  const handleProfileInfoUpdate = async (ev) => {
+  const handleProfileInfoUpdate = async (ev, data) => {
     
     ev.preventDefault()
 
@@ -96,15 +78,7 @@ const ProfilePage = () => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        name: userName,
-        imageId: imageId,
-        address: address,
-        city: city,
-        postalCode: postalCode,
-        phone: phone,
-        admin: admin
-      })
+      body: JSON.stringify(data)
     })
 
 
@@ -118,6 +92,7 @@ const ProfilePage = () => {
 
   
   return (
+
     <section 
       className="
         min-h-[650px]
@@ -127,18 +102,10 @@ const ProfilePage = () => {
         admin={admin}
       />
 
-      <h1 className="
-        my-4
-        text-center 
-        text-5xl text-primary 
-        font-bold font-weight-900 uppercase from-neutral-800">
-        Profile
-      </h1>
-
-      
+     
       <div 
         className="
-          max-w-[800px] mx-auto  
+          max-w-[1100px] mx-auto  
           bg-[#4e9b65] 
           p-2
           shadow-lg shadow-slate-600
@@ -147,97 +114,10 @@ const ProfilePage = () => {
         "
       >
 
-        <div className="flex gap-8 mt-2 p-10 rounded-sm">
-          
-          <div>
-            {/* <div className="bg-gray-700 p-2 rounded-lg flex flex-col items-center justify-center">
-
-              { imageId && (
-                <CldImage
-                  width="100"
-                  height="100"
-                  src={imageId}
-                  sizes="100vw"
-                  alt="mon image"
-                  className="rounded-full mb-3"
-                />
-                
-              )}
-
-              <form>
-              
-                  <CldUploadButton
-                  className="
-                    m-0 p-0 text-gray-200 
-                    hover:text-green-500 hover:text-lg 
-                    whitespace-nowrap
-                    bg-transparent
-                    cursor-pointer
-                    "  
-                    uploadPreset="hwawxrhz"
-                    onUpload={uploadCloudinary}
-
-                  >
-                    Modifier
-                  </CldUploadButton>
-
-              </form>
-            </div> */}
-
-            <EditableImage imageId={imageId} setImageId={setImageId}/>
-            
-          </div>
-
-          <form 
-            className="grow"
-            onClick={handleProfileInfoUpdate}
-            >
-            <input 
-              type="text" 
-              placeholder="Nom et prenom" 
-              className=""
-              value={userName}
-              onChange={(e) => setUserName(e.target.value)}
-            />
-
-            <input type="email" value={session.data?.user?.email} disabled />
-
-            <input 
-              type="text" 
-              placeholder="Adresse" 
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-            />
-
-            <div className="flex gap-6">
-              <input 
-                type="text" 
-                placeholder="Ville" 
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-              />
-
-              <input 
-                type="text" 
-                placeholder="Code postal" 
-                value={postalCode}
-                onChange={(e) => setPostalCode(e.target.value)}
-              />
-
-            </div>
-
-            <input 
-              type="tel" 
-              placeholder="Téléphone" 
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-            />
-
-
-            <button className="m-0 p-0 h-10  whitespace-nowrap" type="submit">Enregister</button>
-
-          </form>
-        </div>
+        <UserForm 
+          user={user}
+          onSave={handleProfileInfoUpdate}
+        />
       
       </div>
 

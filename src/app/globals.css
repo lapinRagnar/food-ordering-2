@@ -55,10 +55,14 @@ button[type="submit"], .submit {
 }
 
 .tabs > *{
-  @apply bg-gray-500 text-gray-800 rounded-full mt-5 p-2;
+  @apply bg-gradient-to-tl from-cyan-950 text-gray-400 rounded-sm mt-5 p-2;
+  @apply hover:text-green-200 hover:text-xl;
+  @apply transition-all ease-in-out duration-700;
+  @apply mb-5;
 }
 
 .tabs > *.active{
-  @apply bg-primary text-green-500 rounded-full mt-5 p-2;
+  @apply bg-primary text-green-500 rounded-md mt-5 p-2;
+  @apply font-bold text-2xl text-gray-200 ;
 }
 
