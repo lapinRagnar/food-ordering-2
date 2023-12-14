@@ -40,6 +40,13 @@ const UserTabs = ({admin}) => {
           >
             Utilisateurs
           </Link>
+
+          <Link 
+            href={'/orders'}
+            className={path==='/orders' ? 'active' : ''} 
+          >
+            Commandes
+          </Link>
         </>
         )}
 
