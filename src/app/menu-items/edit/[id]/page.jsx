@@ -4,14 +4,17 @@ import { useProfile } from "@/app/components/UseProfile.js"
 import UserTabs from "@/app/components/layout/UserTabs"
 import { toast } from 'sonner'
 
-import { useState, } from "react"
+import MenuItemForm from '@/app/components/layout/MenuItemForm'
+
+import { useEffect, useState, } from "react"
 import Link from "next/link"
 
 import Left from "@/app/components/icons/Left"
-import { redirect } from "next/navigation"
-import MenuItemForm from "@/app/components/layout/MenuItemForm"
+import { redirect, useParams } from "next/navigation"
 
-const NewMenuItemPage = () => {
+import DeleteButton from "@/app/components/DeleteButton"
+
+const EditMenuItemPage = () => {
 
   const {data: profileData, loading: profileLoading} = useProfile()
 
@@ -21,20 +24,44 @@ const NewMenuItemPage = () => {
   // const [basePrice, setBasePrice] = useState(0)
   // const [description, setDescription] = useState('')
 
-
+  const [menuItem, setMenuItem] = useState(null)
 
   const [redirectToItems, setRedirectToItems] = useState(false)
+
+  const {id} = useParams()
+
+
+  useEffect(() => {
+
+    fetch('/api/menu-items').then(res => {
+
+      res.json().then(items => {
+        const item = items.find(i => i._id === id)
+        console.log('item', item);
+        
+        // setImageId(item.imageId)
+        // setName(item.name)
+        // setBasePrice(item.basePrice)
+        // setDescription(item.description)
+
+        setMenuItem(item)
+      })
+
+    })
+
+  }, [id])
 
 
   const handleFormSubmit = async (e, data) => {
 
     e.preventDefault()
 
+    data = {...data, _id: id} 
 
-    toast('Ajout Menu...')
+    toast(' Modification en cour...')
 
     const response = await fetch('/api/menu-items', {
-      method: 'POST',
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -43,7 +70,7 @@ const NewMenuItemPage = () => {
 
 
     if (response.ok) {
-      toast.success('Menu bien ajoute!')
+      toast.success('Menu modifié!')
     } else {
       toast.error("Une erreur est survenue, aie aieuuuuh!")
     }
@@ -52,6 +79,24 @@ const NewMenuItemPage = () => {
     setRedirectToItems(true)
 
   }
+
+
+  const handleDeleteClick = async () => {
+    toast('Suppression en cours...')
+
+    const response = await fetch('/api/menu-items?_id=' + id, {
+      method: 'DELETE'
+    })
+
+    if (response.ok) {
+      toast.success("Categorie bien supprimée!")
+      setRedirectToItems(true)
+    } else {
+      toast.error("Une erreur est survenue, aieuuuuh!")
+    }
+
+  }
+
 
 
   if (redirectToItems) {
@@ -84,7 +129,7 @@ const NewMenuItemPage = () => {
   return (
     
     <section 
-    className="min-h-[650px] mb-10"
+    className="min-h-[550px] mb-10"
     >
 
       <UserTabs 
@@ -97,12 +142,12 @@ const NewMenuItemPage = () => {
         text-center 
         text-5xl text-primary 
         font-bold font-weight-900 uppercase from-neutral-800">
-        Nouveau Menu
+        Modifier un Menu
       </h1>
 
       <div className="flex items-center justify-center mb-3">
         <Link 
-          className="flex items-center justify-center gap-2"
+          className=" flex items-center justify-center gap-2"
           href="/menu-items"
         > 
 
@@ -111,18 +156,15 @@ const NewMenuItemPage = () => {
           />
 
           <div className="bg-transparent ">
-            Afficher tous les menus
-
+            Afficer tous les menus  
           </div>
-
-
 
         </Link>
       </div>
 
       <div 
         className="
-          max-w-[1000px] mx-auto  
+          max-w-[1100px] mx-auto  
           bg-[#4e9b65] 
           p-2
           shadow-lg shadow-slate-600
@@ -131,10 +173,18 @@ const NewMenuItemPage = () => {
         "
       >
 
-        <MenuItemForm
-          menuItem={null}
+        <MenuItemForm 
+          menuItem={menuItem}
           onSubmit={handleFormSubmit}
         />
+
+        <div className="pb-5 flex items-center justify-center">
+          
+          <DeleteButton 
+            label="Supprimer ce menu"
+            onDelete={() => handleDeleteClick(id)}
+          />
+        </div>
 
 
       </div>
@@ -144,6 +194,8 @@ const NewMenuItemPage = () => {
 
 
   )
+
+
 }
 
-export default NewMenuItemPage
+export default EditMenuItemPage

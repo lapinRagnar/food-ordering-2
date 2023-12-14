@@ -15,9 +15,6 @@ export default async function Home() {
 
 
   const session = await getServerSession(options)    
-  console.log("la session dans Home = ", session)
-
-
 
   return (
     <>

@@ -14,14 +14,11 @@ const LoginPage = () => {
   const [isLogin, setIsLogin] = useState(true)
   const { data: session, status: sessionStatus } = useSession()
 
-  console.log("la session dans login page router,  session et sessionStatus",router,  session, sessionStatus)
 
   useEffect(() => {
 
-    console.log("je suis dans le useEffect  --- avant router et session", router, sessionStatus)
 
     if (sessionStatus === "authenticated") {
-      console.log("je suis dans le useEffect pour mettre à jour le lien profile", router, sessionStatus)
       router.refresh()
       router.replace("/profile")
     }
@@ -33,11 +30,9 @@ const LoginPage = () => {
     
     ev.preventDefault()
 
-    console.log("dans on login")
     const email = ev.target[0].value
     const password = ev.target[1].value
 
-    console.log("email - password dans le formulaire", email, password)
 
     const isValidEmail = (email) => {
       const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
@@ -66,12 +61,9 @@ const LoginPage = () => {
       password,
     })
 
-    console.log("res dans login page handleformsubmit = ", res)
-    console.log("dans res?.error = ", res?.error)
 
     if (res?.ok) {
       
-      console.log("je passe la- res?.url = ", res?.url)
       setError("")
       router.replace("/")
       

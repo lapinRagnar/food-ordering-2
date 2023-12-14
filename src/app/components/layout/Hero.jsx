@@ -19,12 +19,12 @@ const Hero = () => {
 
         <div className="flex gap-4  transition-all ease-in duration-300">
           <button className=" bg-primary flex gap-2  text-white px-4 py-2 rounded-sm">
-            <div className="bg-primary">Commander</div>
-            <Right  />
+            <div className="bg-primary hover:bg-transparent">Commander</div>
+            <Right className="w6 h-6 bg-transparent text-gray-300" />
           </button>
           <button className="flex gap-2 px-4 py-2 rounded-sm text-gray-300">
             En savoir plus
-            <Right className="w6 h-6  text-gray-300"/>
+            <Right className="w6 h-6 bg-transparent text-gray-300"/>
           </button>
         </div>
       </div>

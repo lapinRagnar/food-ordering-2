@@ -43,15 +43,12 @@ export const options: NextAuthOptions = {
       },
       async authorize(credentials: any) {
 
-        console.log("mes credentials dans auth [next auth] options", credentials)
-
         // const { email, password } = credentials
         await connect()
 
         try {
 
           const user = await User.findOne({email: credentials.email})
-          console.log("mon user dans auth [next auth] options ---- après connection compte", user)
           
          
           if (user) {
@@ -60,8 +57,6 @@ export const options: NextAuthOptions = {
             const passwordOk = user && bcrypt.compareSync(credentials.password, user.password)
 
             if (passwordOk) {
-
-              console.log("je verifie le password et retourne le user, le compte a bien été crée!")
               
               return user
             }
@@ -80,12 +75,8 @@ export const options: NextAuthOptions = {
 
     session: async ({session}: any) => {
 
-      console.log("la session dans auth [next auth] options", session)
       await connect()
       const user = await User.findOne({email: session.user.email})
-      console.log('user dans session', user)
-      console.log("imageId dans session", user?.imageId)
-      console.log("name dans session", user?.name)
       
       session.user.imageId = user?.imageId
       session.user.name = user?.name

@@ -1,19 +1,12 @@
 "use client"
 
 import { useSession } from "next-auth/react"
-import Image from "next/image"
 import { redirect } from "next/navigation"
 import { useEffect, useState } from "react"
-
-import { CldUploadButton } from 'next-cloudinary'
-import { CldImage } from 'next-cloudinary'
-import InfoBox from "../components/layout/InfoBox"
-import SuccessBox from "../components/layout/SuccessBox"
 import {toast} from "sonner"
-import Link from "next/link"
-
 import UserTabs from '@/app/components/layout/UserTabs'
 import EditableImage from "../components/layout/EditableImage"
+
 
 const ProfilePage = () => {
   
@@ -41,6 +34,7 @@ const ProfilePage = () => {
 
 
   useEffect(() => {
+
     if (status === 'authenticated') {
 
       fetch('/api/profile')
@@ -58,10 +52,14 @@ const ProfilePage = () => {
 
           })
         })
-
-
     } 
+    
   }, [status, session, imageParDefaut])
+
+
+
+
+
 
   if (status === 'loading') {
     return <div 
@@ -118,16 +116,6 @@ const ProfilePage = () => {
 
   }
 
-
-/*   const uploadCloudinary = (result) => {
-    
-    toast.success('Téléchargement...')
-
-    setImageId(result.info.public_id)
-
-    toast.success('teléchargement terminé!')
-  } */
-
   
   return (
     <section 
@@ -138,7 +126,6 @@ const ProfilePage = () => {
       <UserTabs 
         admin={admin}
       />
-
 
       <h1 className="
         my-4
