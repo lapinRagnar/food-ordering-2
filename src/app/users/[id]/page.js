@@ -68,7 +68,7 @@ const EditUserPage = () => {
 
   return (
     
-    <section className="mt-8 min-h-[580px] max-w-2xl mx-auto">
+    <section className="mt-8 min-h-[620px] max-w-2xl mx-auto">
 
       <UserTabs admin={true} />
 

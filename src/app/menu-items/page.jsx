@@ -56,13 +56,6 @@ const MenuItemsPage = () => {
 
       <UserTabs admin={true} />
 
-      <h1 className="
-        my-4
-        text-center 
-        text-5xl text-primary 
-        font-bold font-weight-900 uppercase from-neutral-800">
-        Nos Menus
-      </h1>
 
       <div 
         className="

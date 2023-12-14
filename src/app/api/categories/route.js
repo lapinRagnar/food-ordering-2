@@ -31,25 +31,13 @@ export async function GET() {
 export async function DELETE(req) {
   mongoose.connect(process.env.MONGO_URL)
   
-  // console.log("req dans DELETE API", req)
-  
   const url = new URL(req.url)
-
 
   console.log("id url ", url)
 
   const _id = url.searchParams.get('_id')
   console.log('id dans searchParams', _id);
 
-
-
-  // console.log("url dans DELETE API", url)
-
-  // const search = url.searchParams.get('_id')
-  // console.log("search dans DELETE API", search)
-
-  // const _id = url.searchParams.get('_id')
-  // console.log("_id dans DELETE API", _id)
 
   const res = await Category.deleteOne({_id})
   console.log("res du delete", res)

@@ -16,13 +16,6 @@ const NewMenuItemPage = () => {
   const {data: profileData, loading: profileLoading} = useProfile()
 
 
-  // const [imageId, setImageId] = useState('')
-  // const [name, setName] = useState('')
-  // const [basePrice, setBasePrice] = useState(0)
-  // const [description, setDescription] = useState('')
-
-
-
   const [redirectToItems, setRedirectToItems] = useState(false)
 
 
