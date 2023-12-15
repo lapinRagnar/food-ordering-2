@@ -24,7 +24,7 @@ export default async function RootLayout({ children}) {
 
 
   return (
-    <html lang="en">
+    <html lang="en" className='scroll-smooth'>
       <body className={roboto.className}>
         <main className='max-w-[1400px] mx-auto min-h-[100vh]'>
           
