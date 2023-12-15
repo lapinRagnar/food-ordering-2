@@ -21,7 +21,7 @@ export default async function Home() {
       <Hero />
       <HomeMenu />
 
-      <section className="text-center my-[70px]">
+      <section className="text-center my-[70px]" id='about'>
         <SectionHeaders 
           subHeader={'Notre Histoire'}
           mainHeader={'A propos'}
@@ -41,7 +41,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="text-center my-[70px]">
+      <section className="text-center my-[70px]" id='contact'>
 
         <SectionHeaders 
           subHeader={'Pour plus d\'informations'}

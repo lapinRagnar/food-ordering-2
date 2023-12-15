@@ -4,9 +4,9 @@ import Right from "../icons/Right"
 
 const Hero = () => {
   return (
-    <section className="grid grid-rows-2 sm:grid-cols-3 p-5 max-h-[580px] gap-5 ">
+    <section className="grid grid-rows-2 sm:grid-cols-3 p-5 max-h-[450px] gap-5 ">
       
-      <div className="sm:col-span-1 sm:pt-[100px]">
+      <div className="sm:col-span-1 sm:pt-[70px]">
         <h1 className="sm:text-6xl text-5xl font-bold font-weight-900">
           La <br /> 
           Meilleure <span className="text-red-800">Pizza</span> <br />

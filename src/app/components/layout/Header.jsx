@@ -61,17 +61,17 @@ const Header = () => {
 
             <div className="flex items-center gap-1 cursor-pointer hover:text-green-500 ">
               <MdMenuBook  size={25} />
-              <Link href={''} className="hidden sm:block cursor-pointer">Menu</Link>
+              <Link href={'/menu'} className="hidden sm:block cursor-pointer">Menu</Link>
             </div>
 
             <div className="flex items-center gap-1 cursor-pointer hover:text-green-500 ">
               <FiInfo size={25} />
-              <Link href={''} className="hidden sm:block">A props</Link>
+              <Link href={'/#about'} className="hidden sm:block">A props</Link>
             </div>
 
             <div className="flex items-center gap-1 cursor-pointer hover:text-green-500 ">
               <MdContactPhone size={25} />
-              <Link href={''} className="hidden sm:block m-0">Contact</Link>
+              <Link href={'/#contact'} className="hidden sm:block m-0">Contact</Link>
             </div>
 
           </nav>
