@@ -19,33 +19,36 @@ const EditableImage = ({imageId, setImageId}) => {
 
     <>
 
-      { imageId && (
-        <CldImage
-          width="300"
-          height="300"
-          src={imageId}
-          sizes="100vw"
-          alt="mon image"
-          className=" mb-3"
-        />
-        
-      )}
+      <div className=''>
+        { imageId && (
+          <CldImage
+            width="300"
+            height="300"
+            src={imageId}
+            sizes="100vw"
+            alt="mon image"
+            className=" mb-3"
+          />
+          
+        )}
 
-      {!imageId && (
-        <div className='mb-10'>
-          Pas d&apos;image
-        </div>
-      )}
+        {!imageId && (
+          <div className='relative'>
+            Pas d&apos;image
+          </div>
+        )}
+      </div>
 
-      <form>
+      <div className='flex justify-center -mt-10'>
       
           <CldUploadButton
           className="
-            m-0 p-0 text-gray-400 
-            hover:text-green-500 hover:text-lg 
+           text-gray-400 
+            hover:text-gray-100
             whitespace-nowrap
             bg-transparent
             cursor-pointer
+            
             "  
             uploadPreset="hwawxrhz"
             onUpload={uploadCloudinary}
@@ -56,7 +59,7 @@ const EditableImage = ({imageId, setImageId}) => {
             
           </CldUploadButton>
 
-      </form>
+      </div>
     </>
   )
 }

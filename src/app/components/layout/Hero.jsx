@@ -32,7 +32,7 @@ const Hero = () => {
       <div className="sm:col-span-2 w-full h-[532px] relative">
         <Image 
           className="rounded-sm"
-          src={'/pizza1.jpg'}
+          src={'/supreme-pizza.png'}
           alt="pizza"
           fill
         />

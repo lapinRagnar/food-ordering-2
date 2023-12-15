@@ -59,12 +59,13 @@ const MenuItemsPage = () => {
 
       <div 
         className="
-          max-w-[800px] mx-auto  
+          max-w-[600px] mx-auto  
           bg-[#4e9b65] 
           p-2
           shadow-lg shadow-slate-600
           bg-gradient-to-r from-green-200 via-green-400 to-purple-700
           rounded-sm
+          mb-10
         "
       >
 
@@ -103,17 +104,17 @@ const MenuItemsPage = () => {
                     rounded-sm  
                   "
                 > 
-                  <div className='flex items-center justify-center max-h-[400px]'>
+                  <div className='flex items-center justify-center max-h-[300px] bg-red-500'>
                     <CldImage
                       width="400"
                       height="400"
                       src={item.imageId}
                       alt="mon image"
-                      className=" mb-3 text-center rounded-sm"
+                      className="text-center rounded-sm"
                     />
                   </div>
 
-                  <div className="text-center">
+                  <div className="text-center -mt-10">
                     {item.name} 
                   </div>
 

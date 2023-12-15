@@ -138,9 +138,9 @@ const EditMenuItemPage = () => {
       />
 
       <h1 className="
-        my-4
+        
         text-center 
-        text-5xl text-primary 
+        text-xl text-primary 
         font-bold font-weight-900 uppercase from-neutral-800">
         Modifier un Menu
       </h1>
@@ -155,7 +155,7 @@ const EditMenuItemPage = () => {
             className="bg-transparent w-10" 
           />
 
-          <div className="bg-transparent ">
+          <div className="bg-transparent text-xs ">
             Afficer tous les menus  
           </div>
 
@@ -164,7 +164,7 @@ const EditMenuItemPage = () => {
 
       <div 
         className="
-          max-w-[1100px] mx-auto  
+          max-w-[900px] mx-auto  
           bg-[#4e9b65] 
           p-2
           shadow-lg shadow-slate-600

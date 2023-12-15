@@ -86,9 +86,9 @@ const NewMenuItemPage = () => {
       />
 
       <h1 className="
-        my-4
+        
         text-center 
-        text-5xl text-primary 
+        text-2xl text-primary 
         font-bold font-weight-900 uppercase from-neutral-800">
         Nouveau Menu
       </h1>
@@ -103,7 +103,7 @@ const NewMenuItemPage = () => {
             className="bg-transparent w-10" 
           />
 
-          <div className="bg-transparent ">
+          <div className="bg-transparent text-xs ">
             Afficher tous les menus
 
           </div>
@@ -128,6 +128,7 @@ const NewMenuItemPage = () => {
           menuItem={null}
           onSubmit={handleFormSubmit}
         />
+
 
 
       </div>

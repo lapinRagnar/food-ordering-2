@@ -138,17 +138,9 @@ const Categories = () => {
         className='mb-5'
       />
 
-      <h1 className="
-        my-4
-        text-center 
-        text-5xl text-primary 
-        font-bold font-weight-900 uppercase from-neutral-800">
-        Catégories
-      </h1>
-
       <div 
         className="
-          max-w-[800px] mx-auto  
+          max-w-[600px] mx-auto  
           bg-[#4e9b65] 
           p-2
           shadow-lg shadow-slate-600
@@ -157,7 +149,7 @@ const Categories = () => {
         "
       >
 
-        <form className="px-10 pb-10" onSubmit={handleCategorySubmit}>
+        <form className="px-10 pb-4" onSubmit={handleCategorySubmit}>
           <div className="flex gap-4 justify-center items-center">
             <div className="grow">
               <input 
@@ -188,24 +180,24 @@ const Categories = () => {
           
           <h1 className="mb-3 text-2xl text-amber-700 font-bold">Editer les catégories</h1>
 
-          {categories.length > 0 && categories.map(c => (
+          {categories.length > 0 && categories.map(category => (
             <div
               className=" flex items-center"
-              key={c.name}
+              key={category.name}
             >
               
               <div
                 className="grow pl-2"
               >
-                {c.name} 
+                {category.name} 
               </div>
 
               <div className="flex gap-1">
                 <button 
                   type="button"
                   onClick={() => {
-                    setEditedCategory(c)
-                    setCategoryName(c.name)  
+                    setEditedCategory(category)
+                    setCategoryName(category.name)  
                   }} 
                 >
                   Editer
@@ -213,7 +205,7 @@ const Categories = () => {
 
                 <DeleteButton 
                   label={"Effacer"}
-                  onDelete={() => handleDeleteClick(c._id)}
+                  onDelete={() => handleDeleteClick(category._id)}
                 />
               </div>
               

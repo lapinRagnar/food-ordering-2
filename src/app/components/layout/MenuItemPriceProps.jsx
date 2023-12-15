@@ -47,16 +47,16 @@ const MenuItemPriceProps = ({name, addLabel, props, setProps}) => {
       <div>
 
         <div 
-          className='flex items-center justify-between cursor-pointer'
+          className='flex items-center justify-between cursor-pointer '
           onClick={() => setIsOpen(!isOpen)}
         >
           
           <div className='flex gap-2 items-center'>
-            <div className='text-bold border-b mt-10'> {name} </div>
-            <div className='mt-10'>({props?.length})</div>
+            <div className='text-bold border-b p-0 mt-2'> {name} </div>
+            <div className='mt-2'>({props?.length})</div>
           </div>
           
-          <div className='mt-10 p-1'>
+          <div className='mt-2'>
             {!isOpen && (<ChevronDown />)}
             {isOpen && (<ChevronUp />)}
             
@@ -121,10 +121,10 @@ const MenuItemPriceProps = ({name, addLabel, props, setProps}) => {
       >
         <div className='bg-transparent'>
           <Plus 
-            className='w-10 h-10 bg-transparent hover:bg-transparent'
+            className='w-8 h-8 bg-transparent hover:bg-transparent'
           />
         </div>
-        <div className='bg-transparent'>
+        <div className='bg-transparent text-sm'>
           {addLabel}
         </div>
       </button>

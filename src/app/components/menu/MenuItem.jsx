@@ -1,33 +1,42 @@
+import { CldImage } from 'next-cloudinary'
 import Image from "next/image"
 
-const MenuItem = () => {
+const MenuItem = ({imageId, name, description, basePrice, sizes, extraIngredientPrices}) => {
+
+
   return (
     
     <div 
       className="
-        bg-gray-300 
-        p-4 
+        bg-gray-700 
+        p-1
+        pb-5
         rounded-lg 
         text-center 
         h-70  
-        hover:bg-red-300
+        hover:bg-#d30c0c-300
         transition-all ease-in duration-600
         hover:shadow-2xl
-        hover:shadow-fuchsia-700
+        hover:shadow-#2ae950-700
         flex flex-col justify-center items-center
       "
     >
-      <Image 
-        className="rounded-sm"
-        src={'/pizza2.png'}
-        alt="pizza"
-        width={200}
-        height={200}
-      />
-      <h4 className="font-bold mt-4 text-2xl bg-transparent">Pepperoni pizza</h4>
-      <p className="text-gray-700 bg-transparent text-xs my-4">La pizza au pepperoni est une pizza garnie de tranches de pepperoni, un type de saucisson épicé d&apos;origine italienne. </p>
-      <button className="bg-primary text-white px-4 py-2 rounded-sm mt-3">
-        Ajouter au panier - 12€
+
+      { imageId && (
+        <CldImage
+          width="250"
+          height="250"
+          src={imageId}
+          sizes="100vw"
+          alt="mon image"
+          className=" bg-transparent mb-3"
+        />
+      )}
+
+      <h4 className="font-bold  text-2xl bg-transparent">{name}</h4>
+      <p className="text-gray-400 bg-transparent text-sm line-clamp-2">{description}</p>
+      <button className="bg-amber-600 text-white px-4 rounded-sm mt-3">
+        Ajouter au panier {basePrice}€
       </button>
       
     </div>

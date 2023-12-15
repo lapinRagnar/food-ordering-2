@@ -38,7 +38,7 @@ const MenuItemForm = ({onSubmit, menuItem}) => {
 
         <div className="flex gap-4 justify-center items-start">
           
-          <div className='min-w-[350px] max-w-[350px] grow'>
+          <div className='min-w-[250px] max-w-[250px] grow'>
             <EditableImage imageId={imageId} setImageId={setImageId}/>
           </div>
 

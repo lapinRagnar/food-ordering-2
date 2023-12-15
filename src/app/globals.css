@@ -19,7 +19,7 @@ input[type="text"] {
 
   @apply block w-full my-2 rounded-sm;
   @apply border-b p-2 hover:border-gray-500 ;
-  @apply text-zinc-200 font-bold;
+  @apply font-bold;
 }
 
 input:hover::placeholder {
@@ -36,14 +36,18 @@ input[type="text"]:disabled {
 
 }
 
+textarea,input:focus {
+  @apply outline-none;
+}
+
 button:disabled, button[disabled], button[type="submit"][disabled], .submit[disabled] {
   @apply bg-red-400 cursor-not-allowed text-gray-600;
 }
 
 button, .button {
-  @apply  flex p-1 font-semibold rounded-sm ;
+  @apply  flex p-2 font-semibold rounded-sm ;
   /* @apply border-gray-100; */
-  @apply bg-yellow-600 hover:bg-yellow-600;
+  @apply bg-indigo-500 hover:bg-indigo-600;
   @apply hover:text-green-500;
   @apply transition-all ease-in-out duration-700;
 }
