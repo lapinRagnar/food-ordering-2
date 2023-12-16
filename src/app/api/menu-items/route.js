@@ -19,7 +19,13 @@ export async function PUT(req) {
   
   const {_id, ...data} = await req.json()
 
-  const menuItemDoc = await MenuItem.findByIdAndUpdate(_id, data)
+  console.log("data dans le put", data)
+
+  // const menuItemDoc = await MenuItem.findByIdAndUpdate(_id, data)
+  // const menuItemDoc = await MenuItem.findOneAndUpdate(_id, data, { $set: data.category }, { new: true })
+  const menuItemDoc = await MenuItem.findByIdAndUpdate(_id, data, {new: true})
+
+  console.log("menuItemDoc mise à jour", menuItemDoc)
 
   return Response.json(true)
 

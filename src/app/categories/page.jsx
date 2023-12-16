@@ -39,6 +39,8 @@ const Categories = () => {
     })
   }, 800)
 
+  console.log("categories", categories)
+
   const handleCategorySubmit = async (e) => {
 
     e.preventDefault()

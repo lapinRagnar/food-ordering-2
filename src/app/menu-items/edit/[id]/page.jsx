@@ -58,6 +58,8 @@ const EditMenuItemPage = () => {
 
     data = {...data, _id: id} 
 
+    console.log('data à submit', data);
+
     toast(' Modification en cour...')
 
     const response = await fetch('/api/menu-items', {
